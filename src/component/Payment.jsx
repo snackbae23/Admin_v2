@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { SlRefresh } from "react-icons/sl";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
 import arrow from "../assets/arrowup.png";
+import { GrFormPrevious } from "react-icons/gr";
+import { MdNavigateNext } from "react-icons/md";
 import "./Scroll.css";
-import { CgLaptop } from "react-icons/cg";
+import PayoutRequest from "./PayoutRequest";
+import PayoutHistory from "./PayoutHistory";
+import MerchantBalances from "./MerchantBalances";
 
 const Payment = () => {
   const data1 = [
@@ -140,33 +144,86 @@ const Payment = () => {
     },
   ];
 
+  const [pr,setpr] = useState(true);
+  const [ph,setph] = useState(false);
+  const [mb,setmb] = useState(false);
+
+  function a() {
+    setpr(true);
+    setph(false);
+    setmb(false);
+  }
+
+  function b() {
+    setpr(false);
+    setph(true);
+    setmb(false);
+  }
+
+  function c() {
+    setpr(false);
+    setph(false);
+    setmb(true);
+  }
+
   const [data, setData] = useState(data1);
   const [sortType, setSortType] = useState("");
-  console.log(data)
 
   const handleSortChange = (e) => {
     const sortValue = e.target.value;
-    console.log(sortValue)
+    console.log(sortValue);
     setSortType(sortValue);
     sortData(sortValue);
   };
 
+  // const sortData = (type) => {
+  //   let sortedData = [...data];
+  //   let newData = sortedData;
+  //   switch (type) {
+  //     case "Paymentbydates":
+  //       newData = sortedData.sort((a, b) => new Date(b.date) - new Date(a.date));
+  //       break;
+  //     case "Highestamount":
+  //       newData = sortedData.sort((a, b) => b.billamount - a.billamount);
+  //       break;
+  //     case "Highestdiscount":
+  //       newData = sortedData.sort((a, b) => b.discount - a.discount);
+  //       break;
+  //   }
+  //   console.log("newdata",newData)
+  //   setData(newData);
+  //   console.log(data)
+  // };
+
   const sortData = (type) => {
-    let sortedData = [...data];
+    let newData = [...data];
     switch (type) {
-      case "Payment by dates":
-        sortedData.sort((a, b) => new Date(b.date) - new Date(a.date));
+      case "Paymentbydates":
+        newData = newData.sort(
+          (a, b) =>
+            new Date(b.date.split("-").reverse().join("-")) -
+            new Date(a.date.split("-").reverse().join("-"))
+        );
         break;
-      case "Highest amount":
-        sortedData.sort((a, b) => b.billamount - a.billamount);
+      case "Highestamount":
+        newData = newData.sort(
+          (a, b) =>
+            parseFloat(b.billamount.replace("₹", "")) -
+            parseFloat(a.billamount.replace("₹", ""))
+        );
         break;
-      case "Highest discount":
-        sortedData.sort((a, b) => b.discount - a.discount);
+      case "Highestdiscount":
+        newData = newData.sort(
+          (a, b) =>
+            parseFloat(b.discount.replace("₹", "")) -
+            parseFloat(a.discount.replace("₹", ""))
+        );
         break;
       default:
         break;
     }
-    setData(sortedData);
+    console.log("newData", newData);
+    setData(newData);
   };
 
   function btnHandle1() {
@@ -195,6 +252,140 @@ const Payment = () => {
     document.getElementById("btn1").style.background = "white";
     document.getElementById("btn1").style.color = "black";
   }
+
+  const Pagination = ({ data }) => {
+    //data =data?.reverse();
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
+    const maxPage = Math.ceil(data?.length / itemsPerPage);
+
+    function currentPageData() {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      return data?.slice(startIndex, startIndex + itemsPerPage);
+    }
+
+    function goToPage(pageNumber) {
+      setCurrentPage(pageNumber);
+    }
+
+    const renderPageNumbers = () => {
+      const pageNumbers = [];
+      let itemsToShow = 3; // Number of pages to show before and after the current page
+      let start = Math.max(currentPage - itemsToShow, 1);
+      let end = Math.min(currentPage + itemsToShow, maxPage);
+
+      if (start > 1) {
+        pageNumbers.push(1);
+        if (start > 2) {
+          pageNumbers.push("...");
+        }
+      }
+
+      for (let i = start; i <= end; i++) {
+        pageNumbers.push(i);
+      }
+
+      if (end < maxPage) {
+        if (end < maxPage - 1) {
+          pageNumbers.push("...");
+        }
+        pageNumbers.push(maxPage);
+      }
+
+      return pageNumbers.map((number, index) =>
+        number === "..." ? (
+          <span key={index} className="page-item dots">
+            {number}
+          </span>
+        ) : (
+          <button
+            key={index}
+            onClick={() => goToPage(number)}
+            className={`page-item ${currentPage === number ? "active" : ""}`}
+          >
+            {number}
+          </button>
+        )
+      );
+    };
+
+    return (
+      <div>
+        {/* Render the current page's data */}
+        {currentPageData()?.map((data, i) => (
+          <div key={i} className="w-full flex gap-8 p-4 border-b ">
+            <div className="w-[50%] flex justify-between">
+              <p className="text-[#1C2434] text-[14px] font-semibold">
+                {data.merchant}
+              </p>
+              <p className="text-[#1C2434] text-[14px]">{data.paymentId}</p>
+              <p className="text-[#1C2434] text-[14px]">{data.date}</p>
+              <p className="text-[#1C2434] text-[14px] font-semibold">
+                {data.customer}
+              </p>
+            </div>
+            <div className="w-[50%] flex justify-between">
+              <p className="text-[#10B981] text-[14px] font-semibold">
+                {data.billamount}
+              </p>
+              <p className="text-[#ED7770] text-[14px] font-semibold pr-6">
+                {data.discount}
+              </p>
+              <p className="text-[#F4A223] text-[14px] font-semibold pr-6">
+                {data.conveniencefee}
+              </p>
+              <p className="text-[#10B981] text-[14px] font-semibold pr-6">
+                {data.finalamount}
+              </p>
+              <p className="text-[14px] font-semibold pr-6">
+                {data.paymentmode}
+              </p>
+            </div>
+          </div>
+        ))}
+        <div className="flex justify-between px-8  mt-7 sm:flex-row flex-col sm:gap-0 gap-4">
+          {/* Pagination controls */}
+          {/* Dropdown for items per page */}
+          <div className="items-per-page">
+            <label htmlFor="items-per-page">Items per page:</label>
+            <select
+              className="border-2 mx-2 rounded-md"
+              id="items-per-page"
+              value={itemsPerPage}
+              onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            >
+              <option value="6">6</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+          <div className="flex gap-5">
+            <button
+              className="page-item"
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <GrFormPrevious />
+            </button>
+            <div className="flex gap-3">{renderPageNumbers()}</div>
+            <button
+              className="page-item"
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === maxPage}
+            >
+              <MdNavigateNext />
+            </button>
+          </div>
+
+          <div className="current-page sm:block hidden">
+            Page {currentPage} of {maxPage}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div id="dashboard" className="w-full h-fit relative">
@@ -232,7 +423,10 @@ const Payment = () => {
             >
               Monthly
             </button>
-            <input type="date" className="focus:outline-none px-3 border shadow-sm" />
+            <input
+              type="date"
+              className="focus:outline-none px-3 border shadow-sm"
+            />
           </div>
         </div>
       </div>
@@ -331,9 +525,9 @@ const Payment = () => {
                 className="w-full h-full font-semibold outline-none"
               >
                 <option value="">Sort By</option>
-                <option value="Highest amount">Payment Volume</option>
-                <option value="Payment by dates">Payment by dates</option>
-                <option value="Highest discount">Highest discount</option>
+                <option value="Highestamount">Payment Volume</option>
+                <option value="Paymentbydates">Payment by dates</option>
+                <option value="Highestdiscount">Highest discount</option>
               </select>
             </div>
 
@@ -355,7 +549,7 @@ const Payment = () => {
       </div>
 
       <div className="w-full my-6 sm:px-6 px-4">
-        <div className="w-full h-[400px] bg-white px-1 py-4 overflow-hidden shadow-md">
+        <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
           <div className="w-full bg-[#F7F9FC] flex gap-8 p-4">
             <div className="w-[50%] flex justify-between">
               <p className="text-[#64748B] text-[12px] font-semibold">
@@ -388,40 +582,23 @@ const Payment = () => {
             </div>
           </div>
 
-          <div className="w-full flex flex-col h-[300px] hideScroller overflow-y-scroll ">
-            
-            {data?.map((data, i) => (
-              <div key={i} className="w-full flex gap-8 p-4 border-b ">
-                <div className="w-[50%] flex justify-between">
-                  <p className="text-[#1C2434] text-[14px] font-semibold">
-                    {data.merchant}
-                  </p>
-                  <p className="text-[#1C2434] text-[14px]">{data.paymentId}</p>
-                  <p className="text-[#1C2434] text-[14px]">{data.date}</p>
-                  <p className="text-[#1C2434] text-[14px] font-semibold">
-                    {data.customer}
-                  </p>
-                </div>
-                <div className="w-[50%] flex justify-between">
-                  <p className="text-[#10B981] text-[14px] font-semibold">
-                    {data.billamount}
-                  </p>
-                  <p className="text-[#ED7770] text-[14px] font-semibold pr-6">
-                    {data.discount}
-                  </p>
-                  <p className="text-[#F4A223] text-[14px] font-semibold pr-6">
-                    {data.conveniencefee}
-                  </p>
-                  <p className="text-[#10B981] text-[14px] font-semibold pr-6">
-                    {data.finalamount}
-                  </p>
-                  <p className="text-[14px] font-semibold pr-6">
-                    {data.paymentmode}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="w-full h-fit ">
+            <Pagination data={data} />
           </div>
+        </div>
+      </div>
+
+      <div className="w-full my-6 sm:px-6 px-4">
+        <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
+          <div className="w-full border-b p-4 flex justify-around">
+          <p onClick={a} className={`font-semibold text-[20px] ${pr ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Payout Requests</p>
+          <p onClick={b} className={`font-semibold text-[20px] ${ph ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Payout History</p>
+          <p onClick={c} className={`font-semibold text-[20px] ${mb ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Merchant Balances</p>
+          </div>
+
+          {pr && <PayoutRequest/>}
+          {ph && <PayoutHistory/>}
+          {mb && <MerchantBalances/>}
         </div>
       </div>
     </div>
