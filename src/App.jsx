@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+
+import Layout from "./pages/Layout";
+import AdminConsole from "./pages/AdminConsole"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-    <div className=' bg-green-600 '>kjujbbjb</div>
-      <p className='bg-slate-300'>jkjkh</p>
-    </>
-  )
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}> 
+      <Route path="/admin" element={<AdminConsole />} /> 
+      </Route>
+    </Routes>
+  </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

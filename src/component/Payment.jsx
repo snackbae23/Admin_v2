@@ -1,0 +1,431 @@
+import React, {useState} from "react";
+import { SlRefresh } from "react-icons/sl";
+import { CiSearch } from "react-icons/ci";
+import { MdOutlineFileDownload } from "react-icons/md";
+import arrow from "../assets/arrowup.png";
+import "./Scroll.css";
+import { CgLaptop } from "react-icons/cg";
+
+const Payment = () => {
+  const data1 = [
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "18-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "18-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹2000",
+      discount: "₹200",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "upi",
+    },
+  ];
+
+  const [data, setData] = useState(data1);
+  const [sortType, setSortType] = useState("");
+  console.log(data)
+
+  const handleSortChange = (e) => {
+    const sortValue = e.target.value;
+    console.log(sortValue)
+    setSortType(sortValue);
+    sortData(sortValue);
+  };
+
+  const sortData = (type) => {
+    let sortedData = [...data];
+    switch (type) {
+      case "Payment by dates":
+        sortedData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "Highest amount":
+        sortedData.sort((a, b) => b.billamount - a.billamount);
+        break;
+      case "Highest discount":
+        sortedData.sort((a, b) => b.discount - a.discount);
+        break;
+      default:
+        break;
+    }
+    setData(sortedData);
+  };
+
+  function btnHandle1() {
+    document.getElementById("btn1").style.background = "#004AAD";
+    document.getElementById("btn1").style.color = "white";
+    document.getElementById("btn2").style.background = "white";
+    document.getElementById("btn2").style.color = "black";
+    document.getElementById("btn3").style.background = "white";
+    document.getElementById("btn3").style.color = "black";
+  }
+
+  function btnHandle2() {
+    document.getElementById("btn2").style.background = "#004AAD";
+    document.getElementById("btn2").style.color = "white";
+    document.getElementById("btn1").style.background = "white";
+    document.getElementById("btn1").style.color = "black";
+    document.getElementById("btn3").style.background = "white";
+    document.getElementById("btn3").style.color = "black";
+  }
+
+  function btnHandle3() {
+    document.getElementById("btn3").style.background = "#004AAD";
+    document.getElementById("btn3").style.color = "white";
+    document.getElementById("btn2").style.background = "white";
+    document.getElementById("btn2").style.color = "black";
+    document.getElementById("btn1").style.background = "white";
+    document.getElementById("btn1").style.color = "black";
+  }
+
+  return (
+    <div id="dashboard" className="w-full h-fit relative">
+      <div className="w-full h-fit  mt-[70px] sm:px-6 px-4">
+        <div className="flex justify-between">
+          <div className="flex gap-4 py-4 items-center">
+            <p className="text-[#1C2434] text-[24px] font-semibold ">
+              Payment overview
+            </p>
+            <div className="flex justify-center items-center gap-1 border shadow-sm bg-white px-3 py-1 text-black">
+              <SlRefresh />
+              <button>Refresh</button>
+            </div>
+          </div>
+
+          <div className="flex gap-4 py-4">
+            <button
+              id="btn1"
+              onClick={btnHandle1}
+              className="bg-[#004AAD] px-3 py-1 border shadow-sm text-white"
+            >
+              Today
+            </button>
+            <button
+              id="btn2"
+              onClick={btnHandle2}
+              className="bg-white px-3 py-1 border shadow-sm text-black"
+            >
+              Weekly
+            </button>
+            <button
+              id="btn3"
+              onClick={btnHandle3}
+              className="bg-white px-3 py-1 border shadow-sm text-black"
+            >
+              Monthly
+            </button>
+            <input type="date" className="focus:outline-none px-3 border shadow-sm" />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-fit  my-4 sm:px-6 px-4 flex justify-between ">
+        <div className="w-[60%] flex flex-col gap-4">
+          <div className="w-full flex justify-between">
+            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-[16px] text-[#64748B] font-semibold">
+                Total Payment Collection (GMV)
+              </p>
+              <p className="text-[#1C2434] text-[32px] font-semibold">
+                ₹10,00,000
+              </p>
+              <div className="flex gap-2 items-center">
+                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
+                  <img className="size-[14px]" src={arrow} />
+                  <p className="text-[10px]">18%</p>
+                </div>
+                <p className="text-[#64748B] text-[14px]">Since last week</p>
+              </div>
+            </div>
+            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-[16px] text-[#64748B] font-semibold">
+                Total Transaction Count
+              </p>
+              <p className="text-[#1C2434] text-[32px] font-semibold">1000</p>
+              <div className="flex gap-2 items-center">
+                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
+                  <img className="size-[14px]" src={arrow} />
+                  <p className="text-[10px]">18%</p>
+                </div>
+                <p className="text-[#64748B] text-[14px]">Since last week</p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex justify-between">
+            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-[16px] text-[#64748B] font-semibold">
+                Total Gateway fee Collection
+              </p>
+              <p className="text-[#1C2434] text-[32px] font-semibold">
+                ₹10,000
+              </p>
+              <div className="flex gap-2 items-center">
+                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
+                  <img className="size-[14px]" src={arrow} />
+                  <p className="text-[10px]">18%</p>
+                </div>
+                <p className="text-[#64748B] text-[14px]">Since last week</p>
+              </div>
+            </div>
+            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-[16px] text-[#64748B] font-semibold">
+                Total Convenience Fee collection
+              </p>
+              <p className="text-[#1C2434] text-[32px] font-semibold">
+                ₹10,000
+              </p>
+              <div className="flex gap-2 items-center">
+                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
+                  <img className="size-[14px]" src={arrow} />
+                  <p className="text-[10px]">18%</p>
+                </div>
+                <p className="text-[#64748B] text-[14px]">Since last week</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-[39%] h-[316px] bg-white flex items-center justify-center shadow-md">
+          Graph box
+        </div>
+      </div>
+
+      <div className="w-full h-fit my-6 sm:px-6 px-4">
+        <div className="flex justify-between">
+          <p className="text-[#1C2434] text-[24px] font-semibold ">
+            Transaction overview
+          </p>
+
+          <div className="flex gap-4">
+            <div className="w-full bg-white relative flex items-center border shadow-sm">
+              <input
+                className="w-full py-2 px-4 rounded-lg focus:outline-none"
+                type="text"
+                placeholder="Search"
+              />
+              <CiSearch className="absolute text-[1.3rem] font-semibold right-5" />
+            </div>
+
+            <div className="w-[40%] flex h-[3rem] bg-white border px-[12px] items-center gap-2 shadow-sm">
+              <select
+                name="sort_by"
+                value={sortType}
+                onChange={handleSortChange}
+                className="w-full h-full font-semibold outline-none"
+              >
+                <option value="">Sort By</option>
+                <option value="Highest amount">Payment Volume</option>
+                <option value="Payment by dates">Payment by dates</option>
+                <option value="Highest discount">Highest discount</option>
+              </select>
+            </div>
+
+            <div className="w-[50%] flex h-[3rem] bg-white border px-[12px] items-center gap-0 shadow-sm">
+              <MdOutlineFileDownload className="size-[44px]" />
+              <select
+                name="sort_by"
+                // value={formData.businessType}
+                // onChange={handleChange}
+                className="w-full font-semibold h-full outline-none"
+              >
+                <option value="">Download</option>
+                <option value="csv">Download CSV</option>
+                <option value="image">Download IMAGE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full my-6 sm:px-6 px-4">
+        <div className="w-full h-[400px] bg-white px-1 py-4 overflow-hidden shadow-md">
+          <div className="w-full bg-[#F7F9FC] flex gap-8 p-4">
+            <div className="w-[50%] flex justify-between">
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Merchant
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Payment ID
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">Date</p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Customer
+              </p>
+            </div>
+            <div className="w-[50%] flex justify-between">
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Bill Amount
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Discount
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Convenience fee
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Final Amount
+              </p>
+              <p className="text-[#64748B] text-[12px] font-semibold">
+                Payment Mode
+              </p>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col h-[300px] hideScroller overflow-y-scroll ">
+            
+            {data?.map((data, i) => (
+              <div key={i} className="w-full flex gap-8 p-4 border-b ">
+                <div className="w-[50%] flex justify-between">
+                  <p className="text-[#1C2434] text-[14px] font-semibold">
+                    {data.merchant}
+                  </p>
+                  <p className="text-[#1C2434] text-[14px]">{data.paymentId}</p>
+                  <p className="text-[#1C2434] text-[14px]">{data.date}</p>
+                  <p className="text-[#1C2434] text-[14px] font-semibold">
+                    {data.customer}
+                  </p>
+                </div>
+                <div className="w-[50%] flex justify-between">
+                  <p className="text-[#10B981] text-[14px] font-semibold">
+                    {data.billamount}
+                  </p>
+                  <p className="text-[#ED7770] text-[14px] font-semibold pr-6">
+                    {data.discount}
+                  </p>
+                  <p className="text-[#F4A223] text-[14px] font-semibold pr-6">
+                    {data.conveniencefee}
+                  </p>
+                  <p className="text-[#10B981] text-[14px] font-semibold pr-6">
+                    {data.finalamount}
+                  </p>
+                  <p className="text-[14px] font-semibold pr-6">
+                    {data.paymentmode}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Payment;
