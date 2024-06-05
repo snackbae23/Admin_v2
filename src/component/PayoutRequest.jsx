@@ -114,7 +114,7 @@ const PayoutRequest = () => {
               <p className="text-[#1C2434] text-[14px] font-semibold mx-auto">
                 {data.gatewayfee}
               </p>
-              <p className="text-[#F4A223] text-[14px] font-semibold mx-auto">
+              <p className="text-[#10B981] text-[14px] font-semibold mx-auto">
                 {data.receivableamount}
               </p>
               <div className="w-[18%] flex gap-1 justify-center items-center bg-[#3C50E0] p-2 rounded-md">
@@ -170,11 +170,11 @@ const PayoutRequest = () => {
   return (
     <div className="w-full h-fit p-4">
       <div className="w-full bg-[#F7F9FC] flex gap-8 p-4">
-        <div className="w-[29%] flex justify-between">
+        <div className="w-[29%] flex justify-between text-[#64748B] text-[14px] font-semibold">
           <p>Merchant</p>
           <p>Date</p>
         </div>
-        <div className="w-[70%] flex justify-evenly">
+        <div className="w-[70%] flex justify-evenly text-[#64748B] text-[14px] font-semibold">
           <p>Requested Amount</p>
           <p>Gateway Fee</p>
           <p>Receivable Amount</p>
