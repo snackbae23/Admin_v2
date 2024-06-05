@@ -144,9 +144,9 @@ const Payment = () => {
     },
   ];
 
-  const [pr,setpr] = useState(true);
-  const [ph,setph] = useState(false);
-  const [mb,setmb] = useState(false);
+  const [pr, setpr] = useState(true);
+  const [ph, setph] = useState(false);
+  const [mb, setmb] = useState(false);
 
   function a() {
     setpr(true);
@@ -168,6 +168,7 @@ const Payment = () => {
 
   const [data, setData] = useState(data1);
   const [sortType, setSortType] = useState("");
+  const [downloadType, setDownloadType] = useState("");
 
   const handleSortChange = (e) => {
     const sortValue = e.target.value;
@@ -224,6 +225,91 @@ const Payment = () => {
     }
     console.log("newData", newData);
     setData(newData);
+  };
+
+  const downloadCSV = () => {
+    const data = data1;
+
+    const csvRows = [];
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(','));
+
+    for (const row of data) {
+      const values = headers.map(header => row[header]);
+      csvRows.push(values.join(','));
+    }
+
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", "data.csv");
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const downloadImage = () => {
+    const data = data1;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const cellWidth = 100;
+    const cellHeight = 30;
+    const padding = 10;
+
+    const columns = Object.keys(data[0]);
+    const numRows = data.length + 1; // Including header row
+    const numCols = columns.length;
+
+    canvas.width = numCols * cellWidth + 2 * padding;
+    canvas.height = numRows * cellHeight + 2 * padding;
+
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.font = "16px Arial";
+    context.fillStyle = "#000000";
+    context.textAlign = "left";
+    context.textBaseline = "middle";
+
+    // Draw header row
+    columns.forEach((header, index) => {
+      context.fillText(header, padding + index * cellWidth, padding + cellHeight / 2);
+    });
+
+    // Draw data rows
+    data.forEach((row, rowIndex) => {
+      columns.forEach((col, colIndex) => {
+        context.fillText(row[col], padding + colIndex * cellWidth, padding + (rowIndex + 1) * cellHeight + cellHeight / 2);
+      });
+    });
+
+    const url = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", "data.png");
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
+  const handleDownload = (event) => {
+    const selectedOption = event.target.value;
+
+    if (selectedOption === 'csv') {
+      downloadCSV();
+    } else if (selectedOption === 'image') {
+      downloadImage();
+    }
+
+    setDownloadType(selectedOption);
   };
 
   function btnHandle1() {
@@ -502,22 +588,22 @@ const Payment = () => {
       </div>
 
       <div className="w-full h-fit my-6 sm:px-6 px-4">
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <p className="text-[#1C2434] text-[24px] font-semibold ">
             Transaction overview
           </p>
 
-          <div className="flex gap-4">
-            <div className="w-full bg-white relative flex items-center border shadow-sm">
+          <div className="w-[60%] flex gap-4">
+            <div className="w-[40%] h-[2rem] bg-white relative flex items-center border shadow-sm">
               <input
-                className="w-full py-2 px-4 rounded-lg focus:outline-none"
+                className="w-full h-fit px-4 rounded-lg focus:outline-none"
                 type="text"
                 placeholder="Search"
               />
               <CiSearch className="absolute text-[1.3rem] font-semibold right-5" />
             </div>
 
-            <div className="w-[40%] flex h-[3rem] bg-white border px-[12px] items-center gap-2 shadow-sm">
+            <div className="w-[20%] flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm">
               <select
                 name="sort_by"
                 value={sortType}
@@ -531,12 +617,12 @@ const Payment = () => {
               </select>
             </div>
 
-            <div className="w-[50%] flex h-[3rem] bg-white border px-[12px] items-center gap-0 shadow-sm">
-              <MdOutlineFileDownload className="size-[44px]" />
+            <div className="w-[30%] flex h-[2rem] bg-white border px-[12px] items-center gap-0 shadow-sm">
+              <MdOutlineFileDownload className="size-[34px]" />
               <select
-                name="sort_by"
-                // value={formData.businessType}
-                // onChange={handleChange}
+                name="download"
+                value={downloadType}
+                onChange={handleDownload}
                 className="w-full font-semibold h-full outline-none"
               >
                 <option value="">Download</option>
@@ -591,14 +677,41 @@ const Payment = () => {
       <div className="w-full my-6 sm:px-6 px-4">
         <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
           <div className="w-full border-b p-4 flex justify-around">
-          <p onClick={a} className={`font-semibold text-[20px] ${pr ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Payout Requests</p>
-          <p onClick={b} className={`font-semibold text-[20px] ${ph ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Payout History</p>
-          <p onClick={c} className={`font-semibold text-[20px] ${mb ? ('text-[#004AAD] border-b-2 border-[#004AAD]') : ('text-[#1C2434]')}`}>Merchant Balances</p>
+            <p
+              onClick={a}
+              className={`font-semibold text-[20px] ${
+                pr
+                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  : "text-[#1C2434]"
+              }`}
+            >
+              Payout Requests
+            </p>
+            <p
+              onClick={b}
+              className={`font-semibold text-[20px] ${
+                ph
+                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  : "text-[#1C2434]"
+              }`}
+            >
+              Payout History
+            </p>
+            <p
+              onClick={c}
+              className={`font-semibold text-[20px] ${
+                mb
+                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  : "text-[#1C2434]"
+              }`}
+            >
+              Merchant Balances
+            </p>
           </div>
 
-          {pr && <PayoutRequest/>}
-          {ph && <PayoutHistory/>}
-          {mb && <MerchantBalances/>}
+          {pr && <PayoutRequest />}
+          {ph && <PayoutHistory />}
+          {mb && <MerchantBalances />}
         </div>
       </div>
     </div>
