@@ -475,9 +475,9 @@ const Payment = () => {
 
   return (
     <div id="dashboard" className="w-full h-fit relative">
-      <div className="w-full h-fit  mt-[70px] sm:px-6 px-4">
-        <div className="flex justify-between">
-          <div className="flex gap-4 py-4 items-center">
+      <div className="w-full h-fit  mt-[70px] px-6">
+        <div className="w-full flex justify-between">
+          <div className="w-[40%] flex gap-4 py-4 items-center">
             <p className="text-[#1C2434] text-[24px] font-semibold ">
               Payment overview
             </p>
@@ -487,7 +487,7 @@ const Payment = () => {
             </div>
           </div>
 
-          <div className="flex gap-4 py-4">
+          <div className="w-fit flex gap-4 py-4">
             <button
               id="btn1"
               onClick={btnHandle1}
