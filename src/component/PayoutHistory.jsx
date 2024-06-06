@@ -272,7 +272,7 @@ const PayoutHistory = () => {
                   {data.receivableamount}
                 </p>
               </div>
-              <div className="w-[30%] flex pl-4">
+              <div className="w-[30%] flex">
                 <p className="text-[14px] font-semibold mx-auto">{data.mode}</p>
                 <button
                   onClick={() => generatePDF(data)}
