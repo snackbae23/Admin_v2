@@ -474,7 +474,7 @@ const Payment = () => {
   };
 
   return (
-    <div id="dashboard" className="w-full h-fit relative">
+    <div id="payment" className="w-full h-fit relative">
       <div className="w-full h-fit  mt-[70px] px-6">
         <div className="w-full flex justify-between">
           <div className="w-[40%] flex gap-4 py-4 items-center">
