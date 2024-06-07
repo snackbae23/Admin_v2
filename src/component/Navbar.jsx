@@ -63,7 +63,7 @@ const Navbar = ({isToggled, setIsToggled}) => {
 
     
     return (
-        <div className='fixed bg-white z-[600] w-full h-[70px] flex justify-between items-center px-[1.5rem]'>
+        <div className='fixed bg-white z-[600] w-full h-[70px] flex justify-between items-center px-[1.5rem] border shadow-md'>
             <div className='flex items-center justify-center gap-4'>
                 {/* logo */}
             <img
