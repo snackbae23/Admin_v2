@@ -14,6 +14,7 @@ import Dashboard from '../component/Dashboard';
 import Sales from '../component/Sales';
 import Payment from '../component/Payment';
 import Analytics from '../component/Analytics';
+import UserDetails from '../component/UserDetails';
 import Navbar from '../component/Navbar';
 
 const AdminConsole = () => {
@@ -33,6 +34,7 @@ const AdminConsole = () => {
       const [sale, setsale] = useState(false);
       const [pay, setpay] = useState(false);
       const [ana, setana] = useState(false);
+      const [det,setDet] = useState(false);
     
     
       const a = () => {
@@ -40,60 +42,51 @@ const AdminConsole = () => {
         setsale(false)
         setpay(false)
         setana(false)
+        setDet(false)
         setIsToggled(false);
         scrollToTop();
-        
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 768) { // Adjust the threshold as needed
-        
-        document.getElementById('left').style.display = "none";
-        
-      }  
     
       }
+
       const b = () => {
         setdas(false)
         setsale(true)
         setpay(false)
         setana(false)
+        setDet(false)
         setIsToggled(false);
         scrollToTop();
-        
-        const screenWidth = window.innerWidth;
-      if (screenWidth < 768) { // Adjust the threshold as needed
-        document.getElementById('left').style.display = "none";
       }
-      }
+
       const c = () => {
         setdas(false)
         setsale(false)
         setpay(true)
         setana(false)
+        setDet(false)
         setIsToggled(false);
         scrollToTop();
-        
-        const screenWidth = window.innerWidth;
-        if (screenWidth < 768) { // Adjust the threshold as needed
-          
-          document.getElementById('left').style.display = "none";
-          
-          
-        }  
       }
+
       const d = () => {
         setdas(false)
         setsale(false)
         setpay(false)
         setana(true)
+        setDet(false)
         setIsToggled(false);
         scrollToTop();
-        
-        const screenWidth = window.innerWidth;
-        if (screenWidth < 768) { // Adjust the threshold as needed
-          
-          document.getElementById('left').style.display = "none";
-          
         }  
+
+      const f = (id) => {
+        console.log(id);
+        setdas(false)
+        setsale(false)
+        setpay(false)
+        setana(false)
+        setDet(true)
+        setIsToggled(false);
+        scrollToTop();
       }
      
 
@@ -118,9 +111,9 @@ const AdminConsole = () => {
     return (
         
         <>
-        <div id='restaurant' className='absolute w-full h-[300vh] bg-black z-[700] opacity-45 hidden'></div>
+        <div id='admin' className='absolute w-full h-[400vh] bg-black z-[700] opacity-45 hidden'></div>
         <Navbar isToggled={isToggled} setIsToggled={setIsToggled} />
-          <div id='restaurant' className='w-full h-fit flex justify-center  relative  '>
+          <div id='admin' className='w-full h-fit flex justify-center  relative  '>
     
               {/* frame */}
               <div id='frame' className='hidden fixed right-9 z-50  w-[75%] bg-white  h-fit mt-[70px] rounded-md p-5 border border-[black]'>
@@ -171,7 +164,7 @@ const AdminConsole = () => {
                 <div id=''
                   onClick={d}
     
-                  className={`w-full h-[50px] cursor-pointer  mb-1 flex items-center rounded-lg font-semibold p-4 gap-3 ${ana ? ('bg-[#333A48] text-[#F8FAFC]') : ('text-[#F8FAFC]')} `}
+                  className={`w-full h-[50px] cursor-pointer  mb-1 flex items-center rounded-lg font-semibold p-4 gap-3 ${(ana || det) ? ('bg-[#333A48] text-[#F8FAFC]') : ('text-[#F8FAFC]')} `}
                 >
                   <BiSolidAnalyse className='text-[1.1rem]' /> <p className=''>User Analytics</p>
                 </div>
@@ -201,7 +194,8 @@ const AdminConsole = () => {
               {das && <Dashboard  />}
               {sale && <Sales />}
               {pay && <Payment />}
-              {ana && <Analytics />}
+              {ana && <Analytics f={f}/>}
+              {det && <UserDetails d={d} />}
     
             </div>
     

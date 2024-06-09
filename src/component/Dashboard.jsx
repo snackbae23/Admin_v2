@@ -259,7 +259,7 @@ const Dashboard = () => {
   function openPopup() {
     console.log("inside popup");
     document.getElementById("popup1").style.display = "block";
-    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("admin").style.display = "block";
   }
 
   const handleChange = (e) => {
@@ -272,7 +272,7 @@ const Dashboard = () => {
 
   function closePopup() {
     console.log("inside closePopup");
-    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("admin").style.display = "none";
     document.getElementById("popup1").style.display = "none";
 
     
@@ -360,12 +360,7 @@ const Dashboard = () => {
   }
 
   return (
-    <>
-      <div
-        id="dashboard"
-        className="absolute w-full h-[325vh] bg-black z-[700] opacity-45 hidden"
-      ></div>
-      <div id="dashboard" className="w-full h-fit relative">
+    <div id="dashboard" className="w-full h-fit relative">
         {/* add admin */}
         <motion.div
           id="popup1"
@@ -833,7 +828,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
