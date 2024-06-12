@@ -15,6 +15,7 @@ import Sales from '../component/Sales';
 import Payment from '../component/Payment';
 import Analytics from '../component/Analytics';
 import UserDetails from '../component/UserDetails';
+import MerchantDetails from '../component/MerchantDetails';
 import Navbar from '../component/Navbar';
 
 const AdminConsole = () => {
@@ -35,6 +36,7 @@ const AdminConsole = () => {
       const [pay, setpay] = useState(false);
       const [ana, setana] = useState(false);
       const [det,setDet] = useState(false);
+      const [Mdet,setMdet] = useState(false);
     
     
       const a = () => {
@@ -43,6 +45,7 @@ const AdminConsole = () => {
         setpay(false)
         setana(false)
         setDet(false)
+        setMdet(false)
         setIsToggled(false);
         scrollToTop();
     
@@ -54,6 +57,7 @@ const AdminConsole = () => {
         setpay(false)
         setana(false)
         setDet(false)
+        setMdet(false)
         setIsToggled(false);
         scrollToTop();
       }
@@ -64,6 +68,7 @@ const AdminConsole = () => {
         setpay(true)
         setana(false)
         setDet(false)
+        setMdet(false)
         setIsToggled(false);
         scrollToTop();
       }
@@ -74,6 +79,7 @@ const AdminConsole = () => {
         setpay(false)
         setana(true)
         setDet(false)
+        setMdet(false)
         setIsToggled(false);
         scrollToTop();
         }  
@@ -85,6 +91,19 @@ const AdminConsole = () => {
         setpay(false)
         setana(false)
         setDet(true)
+        setMdet(false)
+        setIsToggled(false);
+        scrollToTop();
+      }
+
+      const g = (id) => {
+        console.log(id);
+        setdas(false)
+        setsale(false)
+        setpay(false)
+        setana(false)
+        setDet(false)
+        setMdet(true)
         setIsToggled(false);
         scrollToTop();
       }
@@ -150,7 +169,7 @@ const AdminConsole = () => {
                 <div id=''
                   onClick={b}
     
-                  className={`w-full h-[50px] cursor-pointer mb-1 flex items-center rounded-lg font-semibold p-4 gap-3 ${sale ? ('bg-[#333A48] text-[#F8FAFC]') : ('text-[#F8FAFC]')} `}
+                  className={`w-full h-[50px] cursor-pointer mb-1 flex items-center rounded-lg font-semibold p-4 gap-3 ${(sale || Mdet) ? ('bg-[#333A48] text-[#F8FAFC]') : ('text-[#F8FAFC]')} `}
                 >
                   <GiProfit  className='text-[1.1rem]' /> <p className=''>Sales & Revenue</p>
                 </div>
@@ -192,10 +211,11 @@ const AdminConsole = () => {
             <div id='right' onClick={removeleft}  className='sm:w-[80%] sm:ml-[20%] w-full h-fit bg-[#F6F8FF] flex flex-col '>
     
               {das && <Dashboard  />}
-              {sale && <Sales />}
+              {sale && <Sales g={g}/>}
               {pay && <Payment />}
               {ana && <Analytics f={f}/>}
               {det && <UserDetails d={d} />}
+              {Mdet && <MerchantDetails/>}
     
             </div>
     
