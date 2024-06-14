@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
-import { CgLaptop } from "react-icons/cg";
+import { VscGoToFile } from "react-icons/vsc";
 
 const Analytics = ({f}) => {
 
@@ -349,10 +349,14 @@ const Analytics = ({f}) => {
               <p className="w-[30%] text-center text-[#422B0D] text-[14px] font-semibold pr-6">
                 {data.visit}
               </p>
-              <button onClick={() => changeComp(data.id)}
-              className="w-[30%] text-center text-[#3C50E0] text-[14px] font-semibold pr-6">
+              <div onClick={() => changeComp(data.id)} 
+              className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold">
+              <button
+              >
                 {data.action}
               </button>
+              <VscGoToFile className="size-[18px]"/>
+              </div>
             </div>
           </div>
         ))}

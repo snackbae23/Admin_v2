@@ -215,7 +215,7 @@ const AdminConsole = () => {
               {pay && <Payment />}
               {ana && <Analytics f={f}/>}
               {det && <UserDetails d={d} />}
-              {Mdet && <MerchantDetails/>}
+              {Mdet && <MerchantDetails f={f}/>}
     
             </div>
     

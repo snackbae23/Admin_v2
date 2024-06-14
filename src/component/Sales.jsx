@@ -129,19 +129,19 @@ const Sales = ({g}) => {
       </div>
 
       <div className="w-full h-fit mb-4 px-6 flex justify-between ">
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Total Revenue</p>
             <p className="text-[#1C2434] text-[32px] font-semibold">10,000</p>
           </div>
         </div>
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Subscription Revenue</p>
             <p className="text-[#1C2434] text-[32px] font-semibold">9,000</p>
           </div>
         </div>
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Campaign Revenue</p>
             <p className="text-[#1C2434] text-[32px] font-semibold">1,000</p>
@@ -177,19 +177,19 @@ const Sales = ({g}) => {
       </div>
 
         <div className="w-full h-fit mb-4 px-6 flex justify-between ">
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Total Active Merchant </p>
             <p className="text-[#1C2434] text-[32px] font-semibold">100</p>
           </div>
         </div>
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Basic Plan Merchant</p>
             <p className="text-[#1C2434] text-[32px] font-semibold">90</p>
           </div>
         </div>
-        <div className="w-[32%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
             <p className="text-[16px] text-[#64748B] font-semibold">Premium Plan Merchants</p>
             <p className="text-[#1C2434] text-[32px] font-semibold">10</p>
