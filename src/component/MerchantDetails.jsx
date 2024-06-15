@@ -9,6 +9,9 @@ import SwitchOffer from "./SwitchOffer";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { VscGoToFile } from "react-icons/vsc";
+import { RxCrossCircled } from "react-icons/rx";
+import { motion } from "framer-motion";
+import Select from "react-dropdown-select";
 
 const MerchantDetails = ({ f }) => {
   const data1 = [
@@ -141,6 +144,83 @@ const MerchantDetails = ({ f }) => {
       discount: 500,
     },
   ];
+
+  const [formData, setFormData] = useState({
+    brandName: "",
+    businessType: "",
+    email: "",
+    contact: "",
+    fssai: "",
+    gst: "",
+    permission: "",
+    upiId: "",
+    bankingName: "",
+  });
+
+  const resetFormData = () => {
+    // Reset form values
+    setFormData({
+      brandName: "",
+      businessType: "",
+      email: "",
+      contact: "",
+      fssai: "",
+      gst: "",
+      permission: "",
+      upiId: "",
+      bankingName: "",
+    });
+  };
+
+  const options = [
+    { id: "All access", name: 1 },
+    { id: "Payment", name: 2 },
+    { id: "Sales", name: 3 },
+  ];
+
+  function openPopup() {
+    console.log("inside popup");
+    document.getElementById("popup1").style.display = "block";
+    document.getElementById("admin").style.display = "block";
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  function closePopup() {
+    console.log("inside closePopup");
+    document.getElementById("admin").style.display = "none";
+    document.getElementById("popup1").style.display = "none";
+
+    // Check if the restaurant element exists before trying to modify its style
+    const restaurantElement = document.getElementById("admin");
+    if (restaurantElement) {
+      // Uncomment the line you need
+      restaurantElement.style.filter = "none";
+      //  restaurantElement.style.filter = "blur(10px)";
+    } else {
+      console.error("Element with id 'restaurant' not found.");
+    }
+
+    // Ensure resetFormData function exists and is callable
+    if (typeof resetFormData === "function") {
+      resetFormData();
+    } else {
+      console.error("resetFormData function is not defined.");
+    }
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+    console.log(formData);
+    resetFormData();
+    closePopup();
+  }
 
   const [data, setData] = useState(data1);
   const [sortType, setSortType] = useState("");
@@ -325,13 +405,12 @@ const MerchantDetails = ({ f }) => {
               <p className="w-[30%] text-center text-[#422B0D] text-[14px] font-semibold pr-6">
                 {data.visit}
               </p>
-              <div onClick={() => changeComp(data.id)} 
-              className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold">
-              <button
+              <div
+                onClick={() => changeComp(data.id)}
+                className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold"
               >
-                {data.action}
-              </button>
-              <VscGoToFile className="size-[18px]"/>
+                <button>{data.action}</button>
+                <VscGoToFile className="size-[18px]" />
               </div>
             </div>
           </div>
@@ -380,9 +459,9 @@ const MerchantDetails = ({ f }) => {
   };
 
   const handleDownload = () => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = QR; // Ensure QR is a URL or base64 string
-    link.download = 'QR_Code.png';
+    link.download = "QR_Code.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -390,6 +469,182 @@ const MerchantDetails = ({ f }) => {
 
   return (
     <div id="merchantDetails" className="w-full h-fit relative">
+      {/* Edit merchant */}
+      <motion.div
+        id="popup1"
+        whileInView={{ y: [400, 0] }}
+        transition={{ duration: 0.5, type: "tween" }}
+        className="w-[500px] h-[550px] sm:left-[30%] fixed bg-[#FFFFFF] hidden  z-[900] mt-[80px] rounded-2xl sm:p-4 p-4 "
+      >
+        <div className="flex items-center justify-between font-Roboto sm:text-[1.2rem] text-[1.5rem] text-[#0F172A] px-4 border-b-2 mb-4 pb-2">
+          <p>Add Admin</p>
+          <RxCrossCircled
+            onClick={closePopup}
+            className="cursor-pointer text-[1.9rem]"
+          />
+        </div>
+
+        <div className="w-full flex flex-col justify-center items-center ">
+          <form
+            onSubmit={submitHandler}
+            className="w-[95%] h-[350px] hideScroller  overflow-y-scroll"
+          >
+            <div className="w-full flex flex-col gap-6 mt-4">
+              <div className="w-full flex md:flex-row flex-col gap-6">
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  Brand Name
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="text"
+                      name="brandName"
+                      placeholder="Foodoos"
+                      value={formData.brandName}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  <p className="font-semibold ">Business Type</p>
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] px-[12px] items-center gap-3">
+                    <select
+                      required
+                      name="businessType"
+                      value={formData.businessType}
+                      onChange={handleChange}
+                      className="w-full h-full outline-none"
+                    >
+                      <option value="">Select Business Type</option>
+                      <option value="Retail">Retail</option>
+                      <option value="Hospitality">Hospitality</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Healthcare">Healthcare</option>
+                    </select>
+                  </div>
+                </label>
+              </div>
+
+              <div className="w-full flex md:flex-row flex-col gap-6">
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  Email
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email address"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  Phone Number
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="tel"
+                      name="contact"
+                      placeholder="Enter phone number"
+                      value={formData.contact}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <div className="w-full flex md:flex-row flex-col gap-6">
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  FSSAI License Number
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="number"
+                      name="fssai"
+                      placeholder="Enter FSSAI"
+                      value={formData.fssai}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  GST License Number
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="number"
+                      name="gst"
+                      placeholder="Enter gst number"
+                      value={formData.gst}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <div className="w-full">
+                <label className="w-full text-left text-m flex flex-col gap-3">
+                  <p className="font-semibold ">Permission</p>
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] px-[12px] items-center gap-3">
+                    <select
+                      required
+                      name="permission"
+                      value={formData.permission}
+                      onChange={handleChange}
+                      className="w-full h-full outline-none"
+                    >
+                      <option value="">UPI</option>
+                      <option value="Retail">Retail</option>
+                      <option value="Hospitality">Hospitality</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Healthcare">Healthcare</option>
+                    </select>
+                  </div>
+                </label>
+              </div>
+
+              <div className="w-full flex md:flex-row flex-col gap-6">
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  UPI ID
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="text"
+                      name="upiId"
+                      placeholder="Enter UPI"
+                      value={formData.upiId}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+
+                <label className="md:w-[50%] w-full font-semibold text-left text-m flex flex-col gap-3">
+                  Banking Name
+                  <div className="flex w-full h-[3rem] border rounded-[0.5rem] pl-[12px] items-center gap-3">
+                    <input
+                      type="text"
+                      name="bankingName"
+                      placeholder="Enter name"
+                      value={formData.bankingName}
+                      onChange={handleChange}
+                      className="w-full h-full text-richblack-5 outline-none"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <div className="w-full flex gap-3 justify-center mt-2 mb-2 mx-auto">
+                <button className="w-full bg-[#3C50E0] rounded-[8px] text-white font-medium text-richblack-900 px-[12px] py-[8px] mt-6">
+                  Save
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </motion.div>
       <div className="w-full h-fit  mt-[70px] px-6">
         <div className="w-full flex justify-between">
           <div className="w-[40%] flex gap-4 py-4 items-center">
@@ -403,7 +658,10 @@ const MerchantDetails = ({ f }) => {
           </div>
 
           <div className="w-fit flex gap-4 py-4">
-            <button className="h-[2rem]  bg-white border px-6 font-semibold items-center shadow-sm">
+            <button
+              onClick={openPopup}
+              className="h-[2rem]  bg-white border px-6 font-semibold items-center shadow-sm"
+            >
               Edit
             </button>
             <button className="h-[2rem] bg-white border px-6 font-semibold items-center shadow-sm">
@@ -443,7 +701,10 @@ const MerchantDetails = ({ f }) => {
                   alt="QR"
                   className="h-[66px] w-[70px] aspect-auto cursor-pointer"
                 />
-                <MdOutlineFileDownload className="size-[24px]" onClick={handleDownload} />
+                <MdOutlineFileDownload
+                  className="size-[24px]"
+                  onClick={handleDownload}
+                />
               </div>
             </div>
           </div>
@@ -1088,8 +1349,9 @@ const MerchantDetails = ({ f }) => {
       </div>
 
       <div className="w-full h-fit my-6 px-6">
-        <button className="w-full h-[3rem] bg-[#F44336] text-white font-semibold border rounded-lg"
-        >Permanentaly Delete Merchant</button>
+        <button className="w-full h-[3rem] bg-[#F44336] text-white font-semibold border rounded-lg">
+          Permanentaly Delete Merchant
+        </button>
       </div>
     </div>
   );

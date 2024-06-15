@@ -13,6 +13,7 @@ import { SlRefresh } from "react-icons/sl";
 import { HiOutlinePlusSmall } from "react-icons/hi2";
 import AllMerchant from "./AllMerchant";
 import BasicPlan from "./BasicPlan";
+import { useNavigate } from "react-router-dom";
 
 const Sales = ({g}) => {
 
@@ -50,6 +51,7 @@ const Sales = ({g}) => {
   const [am, setam] = useState(true);
   const [bp, setbp] = useState(false);
   const [pp, setpp] = useState(false);
+  const navigate = useNavigate();
 
   function a() {
     setam(true);
@@ -118,7 +120,7 @@ const Sales = ({g}) => {
               Yearly
             </button>
             <div
-              // onClick={openPopup}
+              onClick={() => navigate("https://snackbaeuser-snackbaes-projects.vercel.app/register")}
               className="flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm"
             >
               <HiOutlinePlusSmall />
