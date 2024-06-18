@@ -482,16 +482,25 @@ const Payment = () => {
   };
 
   const options = {
-    pieHole: 0.3,
+    pieHole: 0.4,
     is3D: false,
+    colors: ["#3C50E0", "#6577F3", "#80CAEE", "#0FADCF", "#6577F3"],
+    legend: {
+      position: "bottom",
+      textStyle: {
+        bold: true, // Make the legend text bold
+      },
+      alignment: "start", // Align the legend text to the start (left) of the legend box
+    },
   };
 
   const data2 = [
-    ["Gender", "count"],
-    ["Male", 20],
-    ["Female", 12],
-    ["Others", 2],
-    ["Non disclose", 7],
+    ["Method", "count"],
+    ["UPI", 20],
+    ["Debit Card", 12],
+    ["Rupay", 9],
+    ["Credit Card", 7],
+    ["Others", 3],
     // CSS-style declaration
   ];
 
@@ -605,15 +614,15 @@ const Payment = () => {
           </div>
         </div>
         <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
-        <div className="w-full px-4 py-2 border-b-2 border-slate-300">
+          <div className="w-full px-4 py-2 border-b-2 border-slate-300">
             <p className="text-[#212B36] text-[22px] font-semibold">
-              User Gender Split
+              Transaction Analytics
             </p>
           </div>
           <Chart
             chartType="PieChart"
             width="100%"
-            height="267px"
+            height="265px"
             data={data2}
             options={options}
           />
