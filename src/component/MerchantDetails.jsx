@@ -11,7 +11,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { VscGoToFile } from "react-icons/vsc";
 import { RxCrossCircled } from "react-icons/rx";
 import { motion } from "framer-motion";
-import Select from "react-dropdown-select";
+import { Chart } from "react-google-charts";
 
 const MerchantDetails = ({ f }) => {
   const data1 = [
@@ -171,12 +171,6 @@ const MerchantDetails = ({ f }) => {
       bankingName: "",
     });
   };
-
-  const options = [
-    { id: "All access", name: 1 },
-    { id: "Payment", name: 2 },
-    { id: "Sales", name: 3 },
-  ];
 
   function openPopup() {
     console.log("inside popup");
@@ -466,6 +460,75 @@ const MerchantDetails = ({ f }) => {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Campaign graph data
+  const options2 = {
+    pieHole: 0.4,
+    is3D: false,
+    colors: ["#3C50E0", "#6577F3", "#80CAEE", "#0FADCF"],
+    legend: {
+      position: "bottom",
+      textStyle: {
+        bold: true, // Make the legend text bold
+      },
+      alignment: "start", // Align the legend text to the start (left) of the legend box
+    },
+  };
+
+  const data2 = [
+    ["Campaign Type", "count"],
+    ["Mobile", 20],
+    ["Email", 12],
+    ["WhatsApp", 23],
+    // CSS-style declaration
+  ];
+
+  // Transaction graph data
+  const options4 = {
+    pieHole: 0.4,
+    is3D: false,
+    colors: ["#3C50E0", "#6577F3", "#80CAEE", "#0FADCF", "#6577F3"],
+    legend: {
+      position: "bottom",
+      textStyle: {
+        bold: true, // Make the legend text bold
+      },
+      alignment: "start", // Align the legend text to the start (left) of the legend box
+    },
+  };
+
+  const data4 = [
+    ["Method", "count"],
+    ["UPI", 20],
+    ["Debit Card", 12],
+    ["Rupay", 9],
+    ["Credit Card", 7],
+    ["Others", 3],
+    // CSS-style declaration
+  ];
+
+  // Gender graph data
+  const options5 = {
+    pieHole: 0.4,
+    is3D: false,
+    colors: ["#3C50E0", "#6577F3", "#80CAEE", "#0FADCF"],
+    legend: {
+      position: "bottom",
+      textStyle: {
+        bold: true, // Make the legend text bold
+      },
+      alignment: "start", // Align the legend text to the start (left) of the legend box
+    },
+  };
+
+  const data5 = [
+    ["Gender", "count"],
+    ["Male", 20],
+    ["Female", 12],
+    ["Others", 2],
+    ["Non disclose", 7],
+    // CSS-style declaration
+  ];
 
   return (
     <div id="merchantDetails" className="w-full h-fit relative">
@@ -995,8 +1058,19 @@ const MerchantDetails = ({ f }) => {
             </div>
           </div>
         </div>
-        <div className="w-[39%] h-[316px] bg-white flex items-center justify-center shadow-md">
-          Graph box
+        <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
+          <div className="w-full px-4 py-2 border-b-2 border-slate-300">
+            <p className="text-[#212B36] text-[22px] font-semibold">
+            Campaign Utilisation
+            </p>
+          </div>
+          <Chart
+            chartType="PieChart"
+            width="100%"
+            height="265px"
+            data={data2}
+            options={options2}
+          />
         </div>
       </div>
 
@@ -1099,8 +1173,19 @@ const MerchantDetails = ({ f }) => {
             </div>
           </div>
         </div>
-        <div className="w-[39%] h-[316px] bg-white flex items-center justify-center shadow-md">
-          Graph box
+        <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
+          <div className="w-full px-4 py-2 border-b-2 border-slate-300">
+            <p className="text-[#212B36] text-[22px] font-semibold">
+              Transaction Analytics
+            </p>
+          </div>
+          <Chart
+            chartType="PieChart"
+            width="100%"
+            height="265px"
+            data={data4}
+            options={options4}
+          />
         </div>
       </div>
 
@@ -1283,8 +1368,19 @@ const MerchantDetails = ({ f }) => {
             </div>
           </div>
         </div>
-        <div className="w-[39%] h-[316px] bg-white flex items-center justify-center shadow-md">
-          Graph box
+        <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
+          <div className="w-full px-4 py-2 border-b-2 border-slate-300">
+            <p className="text-[#212B36] text-[22px] font-semibold">
+              User Gender Split
+            </p>
+          </div>
+          <Chart
+            chartType="PieChart"
+            width="100%"
+            height="265px"
+            data={data5}
+            options={options5}
+          />
         </div>
       </div>
 

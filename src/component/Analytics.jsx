@@ -6,9 +6,9 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { VscGoToFile } from "react-icons/vsc";
+import { Chart } from "react-google-charts";
 
-const Analytics = ({f}) => {
-
+const Analytics = ({ f }) => {
   const data1 = [
     {
       id: "1",
@@ -18,96 +18,97 @@ const Analytics = ({f}) => {
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"2",
+      id: "2",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"3",
+      id: "3",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"4",
+      id: "4",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"5",
+      id: "5",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"6",
+      id: "6",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"7",
+      id: "7",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"8",
+      id: "8",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
-    },
-    {id:"9",
-      user: "Souptik das",
-      userId: "UID00012",
-      contact: "7603037718",
-      spend: "1000",
-      recommend: "200",
-      visit: "20",
-      action: "View Details"
+      action: "View Details",
     },
     {
-      id:"10",
+      id: "9",
       user: "Souptik das",
       userId: "UID00012",
       contact: "7603037718",
       spend: "1000",
       recommend: "200",
       visit: "20",
-      action: "View Details"
+      action: "View Details",
+    },
+    {
+      id: "10",
+      user: "Souptik das",
+      userId: "UID00012",
+      contact: "7603037718",
+      spend: "1000",
+      recommend: "200",
+      visit: "20",
+      action: "View Details",
     },
   ];
 
@@ -185,21 +186,21 @@ const Analytics = ({f}) => {
 
     const csvRows = [];
     const headers = Object.keys(data[0]);
-    csvRows.push(headers.join(','));
+    csvRows.push(headers.join(","));
 
     for (const row of data) {
-      const values = headers.map(header => row[header]);
-      csvRows.push(values.join(','));
+      const values = headers.map((header) => row[header]);
+      csvRows.push(values.join(","));
     }
 
     const csvContent = csvRows.join("\n");
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
 
     link.setAttribute("href", url);
     link.setAttribute("download", "data.csv");
-    link.style.visibility = 'hidden';
+    link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -231,13 +232,21 @@ const Analytics = ({f}) => {
 
     // Draw header row
     columns.forEach((header, index) => {
-      context.fillText(header, padding + index * cellWidth, padding + cellHeight / 2);
+      context.fillText(
+        header,
+        padding + index * cellWidth,
+        padding + cellHeight / 2
+      );
     });
 
     // Draw data rows
     data.forEach((row, rowIndex) => {
       columns.forEach((col, colIndex) => {
-        context.fillText(row[col], padding + colIndex * cellWidth, padding + (rowIndex + 1) * cellHeight + cellHeight / 2);
+        context.fillText(
+          row[col],
+          padding + colIndex * cellWidth,
+          padding + (rowIndex + 1) * cellHeight + cellHeight / 2
+        );
       });
     });
 
@@ -246,19 +255,18 @@ const Analytics = ({f}) => {
 
     link.setAttribute("href", url);
     link.setAttribute("download", "data.png");
-    link.style.visibility = 'hidden';
+    link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-
   const handleDownload = (event) => {
     const selectedOption = event.target.value;
 
-    if (selectedOption === 'csv') {
+    if (selectedOption === "csv") {
       downloadCSV();
-    } else if (selectedOption === 'image') {
+    } else if (selectedOption === "image") {
       downloadImage();
     }
 
@@ -268,7 +276,29 @@ const Analytics = ({f}) => {
   const changeComp = (id) => {
     console.log(id);
     f(id);
-  }
+  };
+
+  const options = {
+    pieHole: 0.4,
+    is3D: false,
+    colors: ["#3C50E0", "#6577F3", "#80CAEE", "#0FADCF"],
+    legend: {
+      position: "bottom",
+      textStyle: {
+        bold: true, // Make the legend text bold
+      },
+      alignment: "start", // Align the legend text to the start (left) of the legend box
+    },
+  };
+
+  const data2 = [
+    ["Gender", "count"],
+    ["Male", 20],
+    ["Female", 12],
+    ["Others", 2],
+    ["Non disclose", 7],
+    // CSS-style declaration
+  ];
 
   const Pagination = ({ data }) => {
     //data =data?.reverse();
@@ -336,8 +366,12 @@ const Analytics = ({f}) => {
               <p className="w-[25%] text-[#1C2434] text-[14px] font-semibold ml-4">
                 {data.user}
               </p>
-              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">{data.userId}</p>
-              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">{data.contact}</p>
+              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
+                {data.userId}
+              </p>
+              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
+                {data.contact}
+              </p>
               <p className="w-[25%] text-center text-[#422B0D] text-[14px] font-semibold">
                 {data.spend}
               </p>
@@ -349,13 +383,12 @@ const Analytics = ({f}) => {
               <p className="w-[30%] text-center text-[#422B0D] text-[14px] font-semibold pr-6">
                 {data.visit}
               </p>
-              <div onClick={() => changeComp(data.id)} 
-              className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold">
-              <button
+              <div
+                onClick={() => changeComp(data.id)}
+                className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold"
               >
-                {data.action}
-              </button>
-              <VscGoToFile className="size-[18px]"/>
+                <button>{data.action}</button>
+                <VscGoToFile className="size-[18px]" />
               </div>
             </div>
           </div>
@@ -568,8 +601,19 @@ const Analytics = ({f}) => {
             </div>
           </div>
         </div>
-        <div className="w-[39%] h-[316px] bg-white flex items-center justify-center shadow-md">
-          Graph box
+        <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
+          <div className="w-full px-4 py-2 border-b-2 border-slate-300">
+            <p className="text-[#212B36] text-[22px] font-semibold">
+              User Gender Split
+            </p>
+          </div>
+          <Chart
+            chartType="PieChart"
+            width="100%"
+            height="265px"
+            data={data2}
+            options={options}
+          />
         </div>
       </div>
 
