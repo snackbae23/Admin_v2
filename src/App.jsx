@@ -4,6 +4,8 @@ import "./App.css";
 
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import AdminConsole from "./pages/AdminConsole"
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
     <Routes>
     <Route path="/" element={<Layout />}>
       <Route index element={<Login />} />
+      <Route path="forgotPassword" element={<ForgotPassword />} />
+      <Route path="resetPassword" element={<ResetPassword />} />
       <Route path="admin" element={<AdminConsole />} />
     </Route>
     </Routes>
