@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Select from "react-dropdown-select";
 import {
   BarChart,
@@ -53,113 +53,113 @@ const Dashboard = () => {
   const data1 = [
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 99,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "46",
-      customerCount: "39",
+      pageVisit: 46,
+      customerCount: 39,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "5436",
-      customerCount: "3799",
+      pageVisit: 5436,
+      customerCount: 3799,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "33546",
-      customerCount: "67399",
+      pageVisit: 33546,
+      customerCount: 67399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "1000",
-      customerCount: "400",
+      pageVisit: 1000,
+      customerCount: 400,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "92306",
-      customerCount: "4999",
+      pageVisit: 92306,
+      customerCount: 4999,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "8946",
-      customerCount: "1099",
+      pageVisit: 8946,
+      customerCount: 1099,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 54,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 46,
+      customerCount: 699,
     },
     {
       merchantName: "foodoos",
-      pageVisit: "546",
-      customerCount: "399",
+      pageVisit: 546,
+      customerCount: 399,
     },
   ];
 
@@ -178,11 +178,11 @@ const Dashboard = () => {
     },
     {
       name: "Birthday Offer",
-      value: 298,
+      value: 2908,
     },
     {
       name: "Special Day Offer",
-      value: 179,
+      value: 1790,
     },
   ];
 
@@ -193,15 +193,15 @@ const Dashboard = () => {
     },
     {
       name: "Birthday Campaign",
-      value: 509,
+      value: 5090,
     },
     {
       name: "Greeting Campaign",
-      value: 986,
+      value: 1986,
     },
     {
       name: "Marketing Campaign",
-      value: 639,
+      value: 2639,
     },
   ];
 
@@ -327,6 +327,7 @@ const Dashboard = () => {
       default:
         break;
     }
+    // let maxValueData2 = newData.reduce((max,data) => (data.pageVisit > max ? data.pageVisit : max),newData[0].pageVisit);
     console.log("newData", newData);
     setData(newData);
   };
@@ -358,9 +359,21 @@ const Dashboard = () => {
     document.getElementById("btn1").style.color = "black";
   }
 
-  const getNormalizedValue = (value) => {
-    return (value / 5000) * 100;
-  };
+  const maxValueData3 = data3.reduce((max,data) => (data.value > max ? data.value : max),data3[0].value);
+  console.log("max Value");
+  console.log(maxValueData3);
+
+  const maxValueData4 = data4.reduce((max,data) => (data.value > max ? data.value : max),data4[0].value);
+  const maxValueData21 = data2.reduce((max,data) => (data.pageVisit > max ? data.pageVisit : max),data2[0].pageVisit);
+  const maxValueData22 = data2.reduce((max,data) => (data.customerCount > max ? data.customerCount : max),data2[0].customerCount);
+  console.log("max Value21");
+  console.log(maxValueData21);
+  console.log("max Value22");
+  console.log(maxValueData22);
+
+  // const getNormalizedValue = (value) => {
+  //   return (value / 5000) * 100;
+  // };
 
   return (
     <div id="dashboard" className="w-full h-fit relative">
@@ -653,8 +666,24 @@ const Dashboard = () => {
               {data2?.map((data, i) => (
                 <div
                   key={i}
-                  className="w-full flex justify-between px-8 py-4 border-b"
+                  className="w-full flex flex-col py-2 px-4 relative"
                 >
+                  <div className="w-full">
+                    <ProgressBar
+                      completed={sortType === "Highestvisit" ? data.pageVisit/((maxValueData21)*1.2)*100 :data.customerCount/((maxValueData22)*1.2)*100}
+                      borderRadius="5px"
+                      bgColor="#E2E8F0"
+                      baseBgColor="ffffff"
+                      height="40px"
+                      labelSize="0px"
+                      // labelColor="#000000" // Change to white or any contrasting color
+                      width="100%"
+                      // labelAlignment="left"
+                      // customLabel={`${data.name}`}
+                    />
+                  </div>
+
+                  <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
                   <div className="w-[60%] flex">
                     <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.merchantName}
@@ -668,14 +697,15 @@ const Dashboard = () => {
                       {data.customerCount}
                     </p>
                   </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="w-[39%] flex flex-col gap-4 h-[740px]">
-          <div className="bg-white flex flex-col w-full h-[370px] border shadow-lg">
+        <div className="w-[39%] flex flex-col gap-4 h-[744px]">
+          <div className="bg-white flex flex-col w-full h-[385px] border shadow-lg">
             <div className="px-4 py-3 flex flex-col gap-2">
               <p className="text-[#212B36] text-[22px] font-semibold">
                 Top Offers
@@ -785,7 +815,7 @@ const Dashboard = () => {
                 <div key={i} className="w-full flex flex-col py-2 px-4 relative">
                   <div className="w-full">
                     <ProgressBar
-                      completed={getNormalizedValue(data.value)}
+                      completed={data.value/((maxValueData3)*1.2)*100}
                       borderRadius="5px"
                       bgColor="#E2E8F0"
                       baseBgColor="ffffff"
@@ -797,20 +827,20 @@ const Dashboard = () => {
                       // customLabel={`${data.name}`}
                     />
                   </div>
-                  <div className="absolute top-4 left-0 w-full flex px-4 justify-between items-center">
-                    <span className="pl-2 text-[#1C2434] font-semibold">
+                  <div className="absolute top-4 left-4 w-[90%] flex px-4 justify-between items-center">
+                    <p className="text-[#1C2434] font-semibold">
                       {data.name}
-                    </span>
-                    <span className="text-[#1C2434] text-[14px] font-semibold pr-4">
+                    </p>
+                    <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.value}
-                    </span>
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-white flex flex-col w-full h-[355px] border shadow-lg">
+          <div className="bg-white flex flex-col w-full h-[345px] border shadow-lg">
             <div className="px-4 py-3 flex flex-col gap-2">
               <p className="text-[#212B36] text-[22px] font-semibold">
                 Top Campaigns
@@ -830,15 +860,27 @@ const Dashboard = () => {
               {data4?.map((data, i) => (
                 <div
                   key={i}
-                  className="w-full flex justify-between py-4 px-4 border-b "
+                  className="w-full flex flex-col py-2 px-4 relative"
                 >
-                  <div className="">
-                    <p className="text-[#1C2434] text-[14px] font-semibold">
+                  <div className="w-full">
+                    <ProgressBar
+                      completed={data.value/((maxValueData4)*1.2)*100}
+                      borderRadius="5px"
+                      bgColor="#E2E8F0"
+                      baseBgColor="ffffff"
+                      height="40px"
+                      labelSize="0px"
+                      // labelColor="#000000" // Change to white or any contrasting color
+                      width="100%"
+                      // labelAlignment="left"
+                      // customLabel={`${data.name}`}
+                    />
+                  </div>
+                  <div className="absolute top-4 left-4 w-[90%] flex px-4 justify-between items-center">
+                    <p className="text-[#1C2434] font-semibold">
                       {data.name}
                     </p>
-                  </div>
-                  <div className="">
-                    <p className="text-[#1C2434] text-[14px] font-semibold pr-6">
+                    <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.value}
                     </p>
                   </div>
