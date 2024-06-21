@@ -176,6 +176,7 @@ const MerchantDetails = ({ f }) => {
     console.log("inside popup");
     document.getElementById("popup1").style.display = "block";
     document.getElementById("admin").style.display = "block";
+    document.body.style.overflow = "hidden";
   }
 
   const handleChange = (e) => {
@@ -190,6 +191,7 @@ const MerchantDetails = ({ f }) => {
     console.log("inside closePopup");
     document.getElementById("admin").style.display = "none";
     document.getElementById("popup1").style.display = "none";
+    document.body.style.overflow = "auto";
 
     // Check if the restaurant element exists before trying to modify its style
     const restaurantElement = document.getElementById("admin");
@@ -537,7 +539,7 @@ const MerchantDetails = ({ f }) => {
         id="popup1"
         whileInView={{ y: [400, 0] }}
         transition={{ duration: 0.5, type: "tween" }}
-        className="w-[500px] h-[550px] sm:left-[30%] fixed bg-[#FFFFFF] hidden  z-[900] mt-[80px] rounded-2xl sm:p-4 p-4 "
+        className="w-[500px] h-[475px] sm:left-[30%] fixed bg-[#FFFFFF] hidden  z-[900] mt-[80px] rounded-2xl sm:p-4 p-4 "
       >
         <div className="flex items-center justify-between font-Roboto sm:text-[1.2rem] text-[1.5rem] text-[#0F172A] px-4 border-b-2 mb-4 pb-2">
           <p>Add Admin</p>

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
-import Select from "react-dropdown-select";
+// import Select from "react-dropdown-select";
+import Select from 'react-select';
 import {
   BarChart,
   Bar,
@@ -237,7 +238,7 @@ const Dashboard = () => {
     lastName: "",
     email: "",
     role: "",
-    permission: [""],
+    permission: [],
   });
 
   const resetFormData = () => {
@@ -252,15 +253,16 @@ const Dashboard = () => {
   };
 
   const options = [
-    { id: "All access", name: 1 },
-    { id: "Payment", name: 2 },
-    { id: "Sales", name: 3 },
-  ];
+    { value: 'allAccess', label: 'All access' },
+    { value: 'payment', label: 'Payment' },
+    { value: 'sales', label: 'Sales' }
+  ]
 
   function openPopup() {
     console.log("inside popup");
     document.getElementById("popup1").style.display = "block";
     document.getElementById("admin").style.display = "block";
+    document.body.style.overflow = "hidden";
   }
 
   const handleChange = (e) => {
@@ -271,10 +273,18 @@ const Dashboard = () => {
     });
   };
 
+  const handleSelectChange = (selected) => {
+    setFormData({
+      ...formData,
+      permission: selected || [],
+    });
+  };
+
   function closePopup() {
     console.log("inside closePopup");
     document.getElementById("admin").style.display = "none";
     document.getElementById("popup1").style.display = "none";
+    document.body.style.overflow = "auto";
 
     // Check if the restaurant element exists before trying to modify its style
     const restaurantElement = document.getElementById("dashboard");
@@ -327,7 +337,6 @@ const Dashboard = () => {
       default:
         break;
     }
-    // let maxValueData2 = newData.reduce((max,data) => (data.pageVisit > max ? data.pageVisit : max),newData[0].pageVisit);
     console.log("newData", newData);
     setData(newData);
   };
@@ -382,7 +391,7 @@ const Dashboard = () => {
         id="popup1"
         whileInView={{ y: [400, 0] }}
         transition={{ duration: 0.5, type: "tween" }}
-        className="w-[500px] h-[550px] sm:left-[30%] fixed bg-[#FFFFFF] hidden  z-[900] mt-[80px] rounded-2xl sm:p-4 p-4 "
+        className="w-[500px] h-[450px] sm:left-[30%] fixed bg-[#FFFFFF] hidden  z-[900] mt-[80px] rounded-2xl sm:p-4 p-4 "
       >
         <div className="flex items-center justify-between font-Roboto sm:text-[1.2rem] text-[1.5rem] text-[#0F172A] px-4 border-b-2 mb-4 pb-2">
           <p>Add Admin</p>
@@ -463,21 +472,11 @@ const Dashboard = () => {
               <div className="w-full">
                 <label className="font-semibold text-left text-m flex flex-col gap-2">
                   Permission
-                  <Select
-                    name="permission"
-                    options={options}
-                    labelField="id"
-                    valueField="id"
-                    multi
-                    onChange={(selectedOptions) =>
-                      setFormData({
-                        ...formData,
-                        permission: selectedOptions.map((option) => option.id),
-                      })
-                    }
-                    color="#3C50E0"
-                    className="w-full text-richblack-5 border rounded-[0.5rem] pl-[12px] h-[3rem] outline-none"
-                  />
+                  <Select 
+                  isMulti
+                  options={options}
+                  value={formData.permission}
+                  onChange={handleSelectChange} />
                 </label>
               </div>
 
