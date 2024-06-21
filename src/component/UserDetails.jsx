@@ -5,6 +5,7 @@ import pic from "../assets/picture.png";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const UserDetails = ({ d }) => {
   const data1 = [
@@ -143,112 +144,112 @@ const UserDetails = ({ d }) => {
   const data5 = [
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5486,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5146,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5046,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 4546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 2046,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5421,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5117,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 3650,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 546,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 5646,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "5460",
+      totalVisit: 5460,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "100",
+      totalVisit: 100,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "16",
+      totalVisit: 1060,
       date: "15-06-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "6",
+      totalVisit: 6,
       date: "18-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "56",
+      totalVisit: 56,
       date: "18-07-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "54",
+      totalVisit: 54,
       date: "12-08-2002",
     },
     {
       merchantName: "foodoos",
-      totalVisit: "546",
+      totalVisit: 4506,
       date: "19-08-2002",
     },
   ];
@@ -370,6 +371,11 @@ const UserDetails = ({ d }) => {
     setData2(newData);
     console.log("Data2", data2);
   };
+
+  const maxValueData2 = data2.reduce((max,data) => (data.totalVisit > max ? data.totalVisit : max),data2[0].totalVisit);
+  const maxValueData3 = data3.reduce((max,data) => (data.redeem > max ? data.redeem : max),data3[0].redeem);
+  console.log("max Value");
+  console.log(maxValueData3);
 
   function btnHandle1() {
     document.getElementById("btn1").style.background = "#004AAD";
@@ -841,8 +847,23 @@ const UserDetails = ({ d }) => {
               {data2?.map((data, i) => (
                 <div
                   key={i}
-                  className="w-full flex justify-between pl-8 pr-6 py-4 border-b"
+                  className="w-full flex flex-col py-2 px-4 relative"
                 >
+                  <div className="w-full">
+                    <ProgressBar
+                      completed={data.totalVisit/((maxValueData2)*1.2)*100}
+                      borderRadius="5px"
+                      bgColor="#E2E8F0"
+                      baseBgColor="ffffff"
+                      height="40px"
+                      labelSize="0px"
+                      // labelColor="#000000" // Change to white or any contrasting color
+                      width="100%"
+                      // labelAlignment="left"
+                      // customLabel={`${data.name}`}
+                    />
+                  </div>
+                  <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
                   <div className="w-[55%] flex">
                     <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.merchantName}
@@ -856,14 +877,15 @@ const UserDetails = ({ d }) => {
                       {data.date}
                     </p>
                   </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="w-[49%] flex flex-col gap-4 h-[740px]">
-          <div className="bg-white flex flex-col w-full h-[370px] border shadow-lg">
+        <div className="w-[49%] flex flex-col gap-4 h-[750px]">
+          <div className="bg-white flex flex-col w-full h-[385px] border shadow-lg">
             <div className="px-4 py-3 flex flex-col gap-2">
               <p className="text-[#212B36] text-[22px] font-semibold">
                 Offers redemption
@@ -888,8 +910,23 @@ const UserDetails = ({ d }) => {
               {data3?.map((data, i) => (
                 <div
                   key={i}
-                  className="w-full flex justify-between py-4 px-4 border-b "
+                  className="w-full flex flex-col py-2 px-4 relative"
                 >
+                  <div className="w-full">
+                    <ProgressBar
+                      completed={data.redeem/((maxValueData3)*1.2)*100}
+                      borderRadius="5px"
+                      bgColor="#E2E8F0"
+                      baseBgColor="ffffff"
+                      height="40px"
+                      labelSize="0px"
+                      // labelColor="#000000" // Change to white or any contrasting color
+                      width="100%"
+                      // labelAlignment="left"
+                      // customLabel={`${data.name}`}
+                    />
+                  </div>
+                  <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
                   <div className="w-[55%] flex">
                     <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.name}
@@ -903,12 +940,13 @@ const UserDetails = ({ d }) => {
                       {data.discount}
                     </p>
                   </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-white flex flex-col w-full h-[355px] overflow-hidden border shadow-lg">
+          <div className="bg-white flex flex-col w-full h-[350px] overflow-hidden border shadow-lg">
             <div className="px-4 py-3 flex flex-col gap-2">
               <p className="text-[#212B36] text-[22px] font-semibold">
                 Recomendation Activity
