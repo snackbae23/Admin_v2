@@ -44,7 +44,7 @@ const Login = () => {
       id="login"
       className="w-full h-[100vh] bg-[#E2E8F0] flex justify-center items-center"
     >
-      <div className="w-[65%] h-[70vh] bg-white flex gap-2">
+      <div className="w-[65%] h-fit bg-white flex gap-2">
         <div className="w-[50%] flex flex-col justify-center items-center p-4">
           <img src={AuthLogo} width={300} height={100} />
           <p className="text-[#1C2434] text-[24px] font-semibold">
@@ -54,11 +54,11 @@ const Login = () => {
 
         <div className="w-[2px] bg-[#E2E8F0]"></div>
 
-        <div className="w-[50%] h-full px-8 py-4">
-          <div className="w-full h-full mt-4">
+        <div className="w-[50%] px-8 py-4 my-4">
+          <div className="w-full mt-4">
           <form
             onSubmit={submitHandler}
-            className="flex flex-col w-full h-full gap-y-4"
+            className="flex flex-col w-full gap-y-4"
           >
             <h2 className="text-[#1C2434] text-left text-[24px] font-semibold">
               Login
@@ -115,7 +115,7 @@ const Login = () => {
             </div>
             </div>
 
-            <button className="bg-[#3056D3] rounded-[8px] text-white font-medium text-richblack-900 px-[12px] py-[8px] mb-2">
+            <button className="bg-[#3056D3] rounded-[8px] text-white font-medium text-richblack-900 px-[12px] py-[8px] mb-4">
               Login
             </button>
           </form>
