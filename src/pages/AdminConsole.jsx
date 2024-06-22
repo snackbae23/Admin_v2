@@ -7,8 +7,6 @@ import { GiProfit } from "react-icons/gi";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { BiSolidAnalyse } from "react-icons/bi";
 import { IoLogOutOutline } from "react-icons/io5";
-import { IoSettingsOutline } from "react-icons/io5";
-import { GoPerson } from "react-icons/go";
 
 import Dashboard from '../component/Dashboard';
 import Sales from '../component/Sales';
@@ -28,7 +26,6 @@ const AdminConsole = () => {
       }
     
       const screenWidth = window.innerWidth;
-      const [isToggled, setIsToggled] = useState(false);
       const navigate = useNavigate();
     
       const [das, setdas] = useState(true);
@@ -131,27 +128,8 @@ const AdminConsole = () => {
         
         <>
         <div id='admin' className='absolute w-full h-[400vh] bg-black z-[700] opacity-45 hidden'></div>
-        <Navbar isToggled={isToggled} setIsToggled={setIsToggled} />
+        <Navbar/>
           <div id='admin' className='w-full h-fit flex justify-center  relative  '>
-    
-              {/* frame */}
-              <div id='frame' className='hidden fixed right-9 z-50  w-[75%] bg-white  h-fit mt-[70px] rounded-md p-5 border border-[black]'>
-                <div className='flex flex-col '>
-                <div className='flex gap-2 items-center justify-evenly p-2'>
-                  <GoPerson className='size-10 rounded-full border border-black p-1 ' />
-                  <div className='text-[#000000] font-semibold'>
-                    <p className='text-[1.3rem] '>Foodoos</p>
-                    <p>Snack Id :9881</p>
-                  </div>
-                  <IoSettingsOutline className='size-7' />
-    
-                </div>
-                <button className='px-2 py-2 rounded-md text-[1.3rem] border border-[#999da2] my-3 text-[#004AAD] font-bold '>Add Account</button>
-    
-                </div>
-                
-    
-              </div>
     
             {/* left side */}
     
