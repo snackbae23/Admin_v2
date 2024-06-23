@@ -3,6 +3,10 @@ import { SlRefresh } from "react-icons/sl";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
 import arrow from "../assets/arrowup.png";
+import UPI from "../assets/UPI.png";
+import RuPay from "../assets/RuPay.png";
+import VISA from "../assets/VISA.png";
+import IMPS from "../assets/IMPS.png";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import "./Scroll.css";
@@ -37,7 +41,7 @@ const Payment = () => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "rupay",
     },
     {
       merchant: "foodoo's",
@@ -50,7 +54,20 @@ const Payment = () => {
       discount: "₹200",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "visa",
+    },
+    {
+      merchant: "foodoo's",
+      merchantId: "ID10001",
+      paymentId: "pay_OCSyvhF0sC3hbH",
+      date: "19-08-2002",
+      customer: "Souptik Das",
+      customerId: "ID238975",
+      billamount: "₹1000",
+      discount: "₹100",
+      conveniencefee: "₹2",
+      finalamount: "₹902",
+      paymentmode: "other",
     },
     {
       merchant: "foodoo's",
@@ -76,20 +93,7 @@ const Payment = () => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
-    },
-    {
-      merchant: "foodoo's",
-      merchantId: "ID10001",
-      paymentId: "pay_OCSyvhF0sC3hbH",
-      date: "19-08-2002",
-      customer: "Souptik Das",
-      customerId: "ID238975",
-      billamount: "₹1000",
-      discount: "₹100",
-      conveniencefee: "₹2",
-      finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "visa",
     },
     {
       merchant: "foodoo's",
@@ -409,7 +413,7 @@ const Payment = () => {
         {/* Render the current page's data */}
         {currentPageData()?.map((data, i) => (
           <div key={i} className="w-full flex gap-8 p-4 border-b ">
-            <div className="w-[50%] flex justify-between">
+            <div className="w-[50%] flex justify-between items-center">
               <p className="text-[#1C2434] text-[14px] font-semibold">
                 {data.merchant}
               </p>
@@ -419,21 +423,29 @@ const Payment = () => {
                 {data.customer}
               </p>
             </div>
-            <div className="w-[50%] flex justify-between">
-              <p className="text-[#10B981] text-[14px] font-semibold">
+            <div className="w-[50%] flex justify-between items-center">
+              <p className="w-[20%] text-[#10B981] text-[14px] font-semibold">
                 {data.billamount}
               </p>
-              <p className="text-[#ED7770] text-[14px] font-semibold pr-6">
+              <p className="w-[20%] text-[#ED7770] text-[14px] font-semibold">
                 {data.discount}
               </p>
-              <p className="text-[#F4A223] text-[14px] font-semibold pr-6">
+              <p className="w-[20%] text-[#F4A223] text-[14px] font-semibold ">
                 {data.conveniencefee}
               </p>
-              <p className="text-[#10B981] text-[14px] font-semibold pr-6">
+              <p className="w-[20%] text-[#10B981] text-[14px] font-semibold">
                 {data.finalamount}
               </p>
-              <p className="text-[14px] font-semibold pr-6">
-                {data.paymentmode}
+              <p className="w-[20%] ">
+                {data.paymentmode === "upi" ? (
+                  <img src={UPI} className="w-[80%] mx-auto h-10"/>
+                ) : data.paymentmode === "rupay" ? (
+                  <img src={RuPay} className="w-full h-10"/>
+                ) : data.paymentmode === "visa" ? (
+                  <img src={VISA} className="w-full h-10"/>
+                ) : (
+                  <img src={IMPS} className="w-[80%] mx-auto h-10"/>
+                )}
               </p>
             </div>
           </div>

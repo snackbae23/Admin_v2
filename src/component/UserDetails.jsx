@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { SlRefresh } from "react-icons/sl";
 import arrow from "../assets/arrowup.png";
+import UPI from "../assets/UPI.png";
+import RuPay from "../assets/RuPay.png";
+import VISA from "../assets/VISA.png";
+import IMPS from "../assets/IMPS.png";
 import pic from "../assets/picture.png";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
@@ -33,7 +37,7 @@ const UserDetails = ({ d }) => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "rupay",
     },
     {
       merchant: "foodoo's",
@@ -46,7 +50,7 @@ const UserDetails = ({ d }) => {
       discount: "₹200",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "visa",
     },
     {
       merchant: "foodoo's",
@@ -59,7 +63,7 @@ const UserDetails = ({ d }) => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "other",
     },
     {
       merchant: "foodoo's",
@@ -72,7 +76,7 @@ const UserDetails = ({ d }) => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "visa",
     },
     {
       merchant: "foodoo's",
@@ -85,7 +89,7 @@ const UserDetails = ({ d }) => {
       discount: "₹100",
       conveniencefee: "₹2",
       finalamount: "₹902",
-      paymentmode: "upi",
+      paymentmode: "rupay",
     },
     {
       merchant: "foodoo's",
@@ -466,7 +470,7 @@ const UserDetails = ({ d }) => {
         {/* Render the current page's data */}
         {currentPageData()?.map((data, i) => (
           <div key={i} className="w-full flex gap-2 p-4 border-b ">
-            <div className="w-[55%] flex justify-between">
+            <div className="w-[55%] flex justify-between items-center">
               <p className="w-[25%] text-center text-[#1C2434] text-[14px] font-semibold">
                 {data.merchant}
               </p>
@@ -480,7 +484,7 @@ const UserDetails = ({ d }) => {
                 {data.billamount}
               </p>
             </div>
-            <div className="w-[45%] flex justify-between">
+            <div className="w-[45%] flex justify-between items-center">
               <p className="w-[25%] text-center text-[#ED7770] text-[14px] font-semibold">
                 {data.discount}
               </p>
@@ -491,7 +495,15 @@ const UserDetails = ({ d }) => {
                 {data.finalamount}
               </p>
               <p className=" w-[25%] text-center text-[14px] font-semibold">
-                {data.paymentmode}
+              {data.paymentmode === "upi" ? (
+                  <img src={UPI} className="w-[80%] h-10 mx-auto"/>
+                ) : data.paymentmode === "rupay" ? (
+                  <img src={RuPay} className="w-full h-10"/>
+                ) : data.paymentmode === "visa" ? (
+                  <img src={VISA} className="w-full h-10"/>
+                ) : (
+                  <img src={IMPS} className="w-[80%] h-10 mx-auto"/>
+                )}
               </p>
             </div>
           </div>
