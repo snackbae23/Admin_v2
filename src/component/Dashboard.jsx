@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import Select from "react-dropdown-select";
-import Select from 'react-select';
+import Select from "react-select";
 import {
   BarChart,
   Bar,
@@ -232,6 +232,7 @@ const Dashboard = () => {
       permission: ["Payment", "Sales"],
     },
   ];
+  console.log(data5);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -253,10 +254,10 @@ const Dashboard = () => {
   };
 
   const options = [
-    { value: 'allAccess', label: 'All access' },
-    { value: 'payment', label: 'Payment' },
-    { value: 'sales', label: 'Sales' }
-  ]
+    { value: "allAccess", label: "All access" },
+    { value: "payment", label: "Payment" },
+    { value: "sales", label: "Sales" },
+  ];
 
   function openPopup() {
     console.log("inside popup");
@@ -368,13 +369,25 @@ const Dashboard = () => {
     document.getElementById("btn1").style.color = "black";
   }
 
-  const maxValueData3 = data3.reduce((max,data) => (data.value > max ? data.value : max),data3[0].value);
+  const maxValueData3 = data3.reduce(
+    (max, data) => (data.value > max ? data.value : max),
+    data3[0].value
+  );
   console.log("max Value");
   console.log(maxValueData3);
 
-  const maxValueData4 = data4.reduce((max,data) => (data.value > max ? data.value : max),data4[0].value);
-  const maxValueData21 = data2.reduce((max,data) => (data.pageVisit > max ? data.pageVisit : max),data2[0].pageVisit);
-  const maxValueData22 = data2.reduce((max,data) => (data.customerCount > max ? data.customerCount : max),data2[0].customerCount);
+  const maxValueData4 = data4.reduce(
+    (max, data) => (data.value > max ? data.value : max),
+    data4[0].value
+  );
+  const maxValueData21 = data2.reduce(
+    (max, data) => (data.pageVisit > max ? data.pageVisit : max),
+    data2[0].pageVisit
+  );
+  const maxValueData22 = data2.reduce(
+    (max, data) => (data.customerCount > max ? data.customerCount : max),
+    data2[0].customerCount
+  );
   console.log("max Value21");
   console.log(maxValueData21);
   console.log("max Value22");
@@ -472,11 +485,12 @@ const Dashboard = () => {
               <div className="w-full">
                 <label className="font-semibold text-left text-m flex flex-col gap-2">
                   Permission
-                  <Select 
-                  isMulti
-                  options={options}
-                  value={formData.permission}
-                  onChange={handleSelectChange} />
+                  <Select
+                    isMulti
+                    options={options}
+                    value={formData.permission}
+                    onChange={handleSelectChange}
+                  />
                 </label>
               </div>
 
@@ -669,7 +683,11 @@ const Dashboard = () => {
                 >
                   <div className="w-full">
                     <ProgressBar
-                      completed={sortType === "Highestvisit" ? data.pageVisit/((maxValueData21)*1.2)*100 :data.customerCount/((maxValueData22)*1.2)*100}
+                      completed={
+                        sortType === "Highestvisit"
+                          ? (data.pageVisit / (maxValueData21 * 1.2)) * 100
+                          : (data.customerCount / (maxValueData22 * 1.2)) * 100
+                      }
                       borderRadius="5px"
                       bgColor="#E2E8F0"
                       baseBgColor="ffffff"
@@ -683,19 +701,19 @@ const Dashboard = () => {
                   </div>
 
                   <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
-                  <div className="w-[60%] flex">
-                    <p className="text-[#1C2434] text-[14px] font-semibold">
-                      {data.merchantName}
-                    </p>
-                  </div>
-                  <div className="w-[32%] flex justify-between">
-                    <p className="text-[#1C2434] text-[14px] font-semibold mr-6">
-                      {data.pageVisit}
-                    </p>
-                    <p className="text-[#1C2434] text-[14px] font-semibold pr-6">
-                      {data.customerCount}
-                    </p>
-                  </div>
+                    <div className="w-[60%] flex">
+                      <p className="text-[#1C2434] text-[14px] font-semibold">
+                        {data.merchantName}
+                      </p>
+                    </div>
+                    <div className="w-[32%] flex justify-between">
+                      <p className="text-[#1C2434] text-[14px] font-semibold mr-6">
+                        {data.pageVisit}
+                      </p>
+                      <p className="text-[#1C2434] text-[14px] font-semibold pr-6">
+                        {data.customerCount}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -811,10 +829,13 @@ const Dashboard = () => {
 
             <div className="w-full h-fit">
               {data3?.map((data, i) => (
-                <div key={i} className="w-full flex flex-col py-2 px-4 relative">
+                <div
+                  key={i}
+                  className="w-full flex flex-col py-2 px-4 relative"
+                >
                   <div className="w-full">
                     <ProgressBar
-                      completed={data.value/((maxValueData3)*1.2)*100}
+                      completed={(data.value / (maxValueData3 * 1.2)) * 100}
                       borderRadius="5px"
                       bgColor="#E2E8F0"
                       baseBgColor="ffffff"
@@ -827,9 +848,7 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="absolute top-4 left-4 w-[90%] flex px-4 justify-between items-center">
-                    <p className="text-[#1C2434] font-semibold">
-                      {data.name}
-                    </p>
+                    <p className="text-[#1C2434] font-semibold">{data.name}</p>
                     <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.value}
                     </p>
@@ -863,7 +882,7 @@ const Dashboard = () => {
                 >
                   <div className="w-full">
                     <ProgressBar
-                      completed={data.value/((maxValueData4)*1.2)*100}
+                      completed={(data.value / (maxValueData4 * 1.2)) * 100}
                       borderRadius="5px"
                       bgColor="#E2E8F0"
                       baseBgColor="ffffff"
@@ -876,9 +895,7 @@ const Dashboard = () => {
                     />
                   </div>
                   <div className="absolute top-4 left-4 w-[90%] flex px-4 justify-between items-center">
-                    <p className="text-[#1C2434] font-semibold">
-                      {data.name}
-                    </p>
+                    <p className="text-[#1C2434] font-semibold">{data.name}</p>
                     <p className="text-[#1C2434] text-[14px] font-semibold">
                       {data.value}
                     </p>
@@ -939,7 +956,7 @@ const Dashboard = () => {
           <div className="w-full h-fit">
             {data5?.map((data, i) => (
               <div key={i} className="w-full flex py-4 px-4 border-b ">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center">
                   <p className="w-[25%] text-[#1C2434] text-[14px] font-semibold ml-6">
                     {data.name}
                   </p>
@@ -949,9 +966,45 @@ const Dashboard = () => {
                   <p className="w-[25%] text-center text-[#1C2434] text-[14px] font-semibold">
                     {data.role}
                   </p>
-                  <p className="w-[25%] text-center text-[#1C2434] text-[14px] font-semibold">
-                    {data.permission.join(" ")}
-                  </p>
+                  <div className="w-[25%]">
+                    {data.permission.map((permit, i) => (
+                      <div key={i} className="w-full">
+                        {permit === "Payment" || permit === "Sales" ? (
+                          i ===
+                            data.permission.findIndex(
+                              (p) => p === "Payment"
+                            ) && (
+                            <div className="flex gap-1">
+                              <div className="w-[48%]">
+                                <div
+                                  className={`text-center bg-red-700 rounded-full p-1 text-[#F8FAFC] text-[14px] font-semibold`}
+                                >
+                                  Payment
+                                </div>
+                              </div>
+                              <div className="w-[48%]">
+                                <div
+                                  className={`text-center bg-orange-400 rounded-full p-1 text-[#F8FAFC] text-[14px] font-semibold`}
+                                >
+                                  Sales
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        ) : permit !== "Sales" ? (
+                          <div
+                            className={`text-center bg-green-500 rounded-full p-1 text-[#F8FAFC] text-[14px] font-semibold ${
+                              permit === "All access"
+                                ? "bg-green-500 w-[50%] mx-auto"
+                                : "bg-orange-400"
+                            } `}
+                          >
+                            {permit}
+                          </div>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
