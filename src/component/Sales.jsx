@@ -89,7 +89,7 @@ const Sales = ({ g }) => {
   }
 
   return (
-    <div id="sales" className="w-full h-fit relative">
+    <div id="sales" className="w-full h-fit relative  sm:w-[80%] sm:ml-[20%] bg-[#F6F8FF] flex flex-col ">
       <div className="w-full h-fit  mt-[70px] px-6">
         <div className="w-full flex justify-between">
           <div className="w-[40%] flex gap-4 py-4 items-center">
@@ -101,32 +101,7 @@ const Sales = ({ g }) => {
               <button>Refresh</button>
             </div>
           </div>
-
-          {/* <div className="w-fit flex gap-4 py-4">
-            <button
-              id="btn1"
-              onClick={btnHandle1}
-              className="h-[2rem] bg-[#004AAD] text-white border px-[12px] items-center shadow-sm"
-            >
-              Monthly
-            </button>
-            <button
-              id="btn2"
-              onClick={btnHandle2}
-              className="h-[2rem] bg-white border px-[12px] items-center shadow-sm"
-            >
-              Yearly
-            </button>
-            <div
-              onClick={() => navigate("https://snackbaeuser-snackbaes-projects.vercel.app/register")}
-              className="flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm"
-            >
-              <HiOutlinePlusSmall />
-              <button>Add Merchant</button>
-            </div>
-          </div> */}
-
-          {/* <div className="w-fit flex gap-4 py-4">
+          <div className="w-fit flex gap-4 py-4">
             <button
               id="btn1"
               onClick={btnHandle1}
@@ -141,70 +116,42 @@ const Sales = ({ g }) => {
             >
               Yearly
             </button>
-            <div
-              onClick={() =>
-                navigate(
-                  "https://snackbaeuser-snackbaes-projects.vercel.app/register"
-                )
-              }
+            <a
+              href="https://snackbaeuser-snackbaes-projects.vercel.app/register"
               className="flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm cursor-pointer"
+              target="_blank" // This will open the link in a new tab
+              rel="noopener noreferrer" // This is a security best practice
             >
               <HiOutlinePlusSmall />
               <span>Add Merchant</span>
-            </div>
-          </div> */}
-
-<div className="w-fit flex gap-4 py-4">
-      <button
-        id="btn1"
-        onClick={btnHandle1}
-        className="h-[2rem] bg-[#004AAD] text-white border px-[12px] items-center shadow-sm flex justify-center"
-      >
-        Monthly
-      </button>
-      <button
-        id="btn2"
-        onClick={btnHandle2}
-        className="h-[2rem] bg-white border px-[12px] items-center shadow-sm flex justify-center"
-      >
-        Yearly
-      </button>
-      <a
-        href="https://snackbaeuser-snackbaes-projects.vercel.app/register"
-        className="flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm cursor-pointer"
-        target="_blank" // This will open the link in a new tab
-        rel="noopener noreferrer" // This is a security best practice
-      >
-        <HiOutlinePlusSmall />
-        <span>Add Merchant</span>
-      </a>
-    </div>
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="w-full h-fit mb-4 px-6 flex justify-between ">
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Total Revenue
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">10,000</p>
+            <p className="text-[#1C2434] text-2xl font-bold">₹10,000</p>
           </div>
         </div>
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Subscription Revenue
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">9,000</p>
+            <p className="text-[#1C2434] text-2xl font-bold">₹9,000</p>
           </div>
         </div>
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Campaign Revenue
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">1,000</p>
+            <p className="text-[#1C2434] text-2xl font-bold">₹1,000</p>
           </div>
         </div>
       </div>
@@ -237,40 +184,40 @@ const Sales = ({ g }) => {
       </div>
 
       <div className="w-full h-fit mb-4 px-6 flex justify-between ">
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Total Active Merchant{" "}
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">100</p>
+            <p className="text-[#1C2434] text-2xl font-bold">100</p>
           </div>
         </div>
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Basic Plan Merchant
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">90</p>
+            <p className="text-[#1C2434] text-2xl font-bold">90</p>
           </div>
         </div>
-        <div className="w-[32.5%] h-[130px] bg-white py-4 px-6 border shadow-lg">
+        <div className="w-[32.5%]  bg-white py-6 px-6 border shadow-lg">
           <div className="w-full flex flex-col gap-3">
-            <p className="text-[16px] text-[#64748B] font-semibold">
+            <p className="text-sm text-[#64748B] font-semibold">
               Premium Plan Merchants
             </p>
-            <p className="text-[#1C2434] text-[32px] font-semibold">10</p>
+            <p className="text-[#1C2434] text-2xl font-bold">10</p>
           </div>
         </div>
       </div>
 
       <div className="w-full my-6 sm:px-6 px-4">
         <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
-          <div className="w-full border-b p-4 flex justify-around">
+          <div className="w-full border-b  flex justify-around">
             <p
               onClick={a}
-              className={`font-semibold text-[20px] ${
+              className={`font-semibold text-[20px] py-2 cursor-pointer ${
                 am
-                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  ? "text-[#004AAD] border-b-2  border-[#3C50E0]"
                   : "text-[#1C2434]"
               }`}
             >
@@ -278,9 +225,9 @@ const Sales = ({ g }) => {
             </p>
             <p
               onClick={b}
-              className={`font-semibold text-[20px] ${
+              className={`font-semibold text-[20px] py-2 cursor-pointer ${
                 bp
-                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  ? "text-[#004AAD] border-b-2 border-[#3C50E0]"
                   : "text-[#1C2434]"
               }`}
             >
@@ -288,9 +235,9 @@ const Sales = ({ g }) => {
             </p>
             <p
               onClick={c}
-              className={`font-semibold text-[20px] ${
+              className={`font-semibold text-[20px] py-2 cursor-pointer ${
                 pp
-                  ? "text-[#004AAD] border-b-2 border-[#004AAD]"
+                  ? "text-[#004AAD] border-b-2 border-[#3C50E0]"
                   : "text-[#1C2434]"
               }`}
             >
