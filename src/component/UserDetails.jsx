@@ -10,6 +10,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router-dom";
 
 const UserDetails = ({ d }) => {
   const data1 = [
@@ -150,111 +151,133 @@ const UserDetails = ({ d }) => {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "fine dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5486,
       date: "18-08-2002",
+      merchantType: "fast food",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5146,
       date: "18-08-2002",
+      merchantType: "casual dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5046,
       date: "18-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 4546,
       date: "18-08-2002",
+      merchantType: "fine dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 2046,
       date: "18-08-2002",
+      merchantType: "fast food",
     },
     {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "casual dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5421,
       date: "18-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "fine dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5117,
       date: "18-08-2002",
+      merchantType: "fast food",
     },
     {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "casual dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 3650,
       date: "18-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 546,
       date: "18-08-2002",
+      merchantType: "fine dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5646,
       date: "18-08-2002",
+      merchantType: "fast food",
     },
     {
       merchantName: "foodoos",
       totalVisit: 5460,
       date: "18-08-2002",
+      merchantType: "casual dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 100,
       date: "18-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 1060,
       date: "15-06-2002",
+      merchantType: "fine dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 6,
       date: "18-08-2002",
+      merchantType: "fast food",
     },
     {
       merchantName: "foodoos",
       totalVisit: 56,
       date: "18-07-2002",
+      merchantType: "casual dining",
     },
     {
       merchantName: "foodoos",
       totalVisit: 54,
       date: "12-08-2002",
+      merchantType: "cafe",
     },
     {
       merchantName: "foodoos",
       totalVisit: 4506,
       date: "19-08-2002",
+      merchantType: "fine dining",
     },
   ];
 
@@ -288,59 +311,150 @@ const UserDetails = ({ d }) => {
 
   const data4 = [
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
     },
     {
-      merchanName : "Foodoos",
-      date: "19-08-2002",
-      remark: "Liked",
-      dish: "Fish & Chips"
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fine dining",
+      lastVisit: "Visited 2 days ago",
+      totalVisit: 1234
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fast food",
+      lastVisit: "Visited 3 days ago",
+      totalVisit: 874
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "casual dining",
+      lastVisit: "Visited 5 days ago",
+      totalVisit: 953
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fine dining",
+      lastVisit: "Visited 4 days ago",
+      totalVisit: 1100
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fast food",
+      lastVisit: "Visited 1 day ago",
+      totalVisit: 750
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "casual dining",
+      lastVisit: "Visited 2 days ago",
+      totalVisit: 615
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fine dining",
+      lastVisit: "Visited 1 day ago",
+      totalVisit: 980
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fast food",
+      lastVisit: "Visited 5 days ago",
+      totalVisit: 840
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "casual dining",
+      lastVisit: "Visited 3 days ago",
+      totalVisit: 690
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "cafe",
+      lastVisit: "Visited today",
+      totalVisit: 546
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fine dining",
+      lastVisit: "Visited 4 days ago",
+      totalVisit: 1040
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "fast food",
+      lastVisit: "Visited 2 days ago",
+      totalVisit: 860
+    },
+    {
+      merchantName: "Foodoos",
+      merchantType: "casual dining",
+      lastVisit: "Visited 1 day ago",
+      totalVisit: 700
     },
   ];
-
+  
   const [data, setData] = useState(data1);
+const navigate=useNavigate();
 
   const changeComp = () => {
-    d();
+    navigate("/userdata")
   };
 
   const [data2, setData2] = useState(data5);
@@ -376,8 +490,14 @@ const UserDetails = ({ d }) => {
     console.log("Data2", data2);
   };
 
-  const maxValueData2 = data2.reduce((max,data) => (data.totalVisit > max ? data.totalVisit : max),data2[0].totalVisit);
-  const maxValueData3 = data3.reduce((max,data) => (data.redeem > max ? data.redeem : max),data3[0].redeem);
+  const maxValueData2 = data2.reduce(
+    (max, data) => (data.totalVisit > max ? data.totalVisit : max),
+    data2[0].totalVisit
+  );
+  const maxValueData3 = data3.reduce(
+    (max, data) => (data.redeem > max ? data.redeem : max),
+    data3[0].redeem
+  );
   console.log("max Value");
   console.log(maxValueData3);
 
@@ -408,151 +528,11 @@ const UserDetails = ({ d }) => {
     document.getElementById("btn1").style.color = "black";
   }
 
-  const Pagination = ({ data }) => {
-    //data =data?.reverse();
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(6);
-    const maxPage = Math.ceil(data?.length / itemsPerPage);
-
-    function currentPageData() {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      return data?.slice(startIndex, startIndex + itemsPerPage);
-    }
-
-    function goToPage(pageNumber) {
-      setCurrentPage(pageNumber);
-    }
-
-    const renderPageNumbers = () => {
-      const pageNumbers = [];
-      let itemsToShow = 3; // Number of pages to show before and after the current page
-      let start = Math.max(currentPage - itemsToShow, 1);
-      let end = Math.min(currentPage + itemsToShow, maxPage);
-
-      if (start > 1) {
-        pageNumbers.push(1);
-        if (start > 2) {
-          pageNumbers.push("...");
-        }
-      }
-
-      for (let i = start; i <= end; i++) {
-        pageNumbers.push(i);
-      }
-
-      if (end < maxPage) {
-        if (end < maxPage - 1) {
-          pageNumbers.push("...");
-        }
-        pageNumbers.push(maxPage);
-      }
-
-      return pageNumbers.map((number, index) =>
-        number === "..." ? (
-          <span key={index} className="page-item dots">
-            {number}
-          </span>
-        ) : (
-          <button
-            key={index}
-            onClick={() => goToPage(number)}
-            className={`page-item ${currentPage === number ? "active" : ""}`}
-          >
-            {number}
-          </button>
-        )
-      );
-    };
-
-    return (
-      <div>
-        {/* Render the current page's data */}
-        {currentPageData()?.map((data, i) => (
-          <div key={i} className="w-full flex gap-2 p-4 border-b ">
-            <div className="w-[55%] flex justify-between items-center">
-              <p className="w-[25%] text-center text-[#1C2434] text-[14px] font-semibold">
-                {data.merchant}
-              </p>
-              <p className="w-[35%] text-center text-[#1C2434] text-[14px]">
-                {data.paymentId}
-              </p>
-              <p className="w-[20%] text-center text-[#1C2434] text-[14px]">
-                {data.date}
-              </p>
-              <p className="w-[20%] text-center text-[#10B981] text-[14px] font-semibold">
-                {data.billamount}
-              </p>
-            </div>
-            <div className="w-[45%] flex justify-between items-center">
-              <p className="w-[25%] text-center text-[#ED7770] text-[14px] font-semibold">
-                {data.discount}
-              </p>
-              <p className="w-[25%] text-center text-[#F4A223] text-[14px] font-semibold">
-                {data.conveniencefee}
-              </p>
-              <p className="w-[25%] text-center text-[#10B981] text-[14px] font-semibold">
-                {data.finalamount}
-              </p>
-              <p className=" w-[25%] text-center text-[14px] font-semibold">
-              {data.paymentmode === "upi" ? (
-                  <img src={UPI} className="w-[80%] h-10 mx-auto"/>
-                ) : data.paymentmode === "rupay" ? (
-                  <img src={RuPay} className="w-full h-10"/>
-                ) : data.paymentmode === "visa" ? (
-                  <img src={VISA} className="w-full h-10"/>
-                ) : (
-                  <img src={IMPS} className="w-[80%] h-10 mx-auto"/>
-                )}
-              </p>
-            </div>
-          </div>
-        ))}
-        <div className="flex justify-between px-8  mt-7 sm:flex-row flex-col sm:gap-0 gap-4">
-          {/* Pagination controls */}
-          {/* Dropdown for items per page */}
-          <div className="items-per-page">
-            <label htmlFor="items-per-page">Items per page:</label>
-            <select
-              className="border-2 mx-2 rounded-md"
-              id="items-per-page"
-              value={itemsPerPage}
-              onChange={(e) => setItemsPerPage(Number(e.target.value))}
-            >
-              <option value="6">6</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-          <div className="flex gap-5">
-            <button
-              className="page-item"
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              <GrFormPrevious />
-            </button>
-            <div className="flex gap-3">{renderPageNumbers()}</div>
-            <button
-              className="page-item"
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === maxPage}
-            >
-              <MdNavigateNext />
-            </button>
-          </div>
-
-          <div className="current-page sm:block hidden">
-            Page {currentPage} of {maxPage}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div id="userDetails" className="w-full h-fit relative">
+    <div
+      id="userDetails"
+      className="w-full h-fit relative sm:w-[80%] sm:ml-[20%] bg-[#F6F8FF] flex flex-col"
+    >
       <div className="w-full h-fit  mt-[70px] px-6">
         <div className="w-full flex justify-between items-center">
           <div className="w-[40%] flex gap-4 py-4 items-center">
@@ -581,103 +561,77 @@ const UserDetails = ({ d }) => {
       </div>
 
       <div className="w-full h-fit  mb-4 px-6 flex justify-between ">
-        <div className="w-[60%] flex flex-col gap-4">
-          <div className="w-full flex justify-between">
-            <div className="w-full h-[127px] bg-white p-4 flex items-center gap-4 shadow-md">
-              <div className="w-[55%] flex justify-between items-center">
-                <img
-                  src={pic}
-                  alt="pic"
-                  className="h-[66px] w-[70px] aspect-auto cursor-pointer"
-                />
-                <div className="w-[70%] flex justify-between">
-                  <div className="text-[#1C2434B0] text-[16px] gap-2 font-semibold flex flex-col">
-                    <p>User Name:</p>
-                    <p>User Id:</p>
-                  </div>
-                  <div className="text-[#1C2434] text-[16px] font-semibold gap-2 flex flex-col">
-                    <p>Souptik Das</p>
-                    <p>ID010101</p>
-                  </div>
+        <div className="w-[60%] flex flex-col shadow-md bg-white ">
+          <div className="w-full h-[127px]  p-4 flex items-center gap-4 border-b">
+            <div className="w-[55%] flex justify-between items-center">
+              <img
+                src={pic}
+                alt="pic"
+                className="h-[66px] w-[70px] aspect-auto cursor-pointer"
+              />
+              <div className="w-[70%] flex justify-between">
+                <div className="text-[#1C2434B0] text-[16px] gap-2 font-semibold flex flex-col">
+                  <p>User Name:</p>
+                  <p>User Id:</p>
+                </div>
+                <div className="text-[#1C2434] text-[16px] font-semibold gap-2 flex flex-col">
+                  <p>Souptik Das</p>
+                  <p>ID010101</p>
                 </div>
               </div>
-              <div className="w-[1px] h-[70px] bg-slate-500"></div>
-              <div className="w-[40%] flex justify-between ">
-                <div className="text-[#1C2434B0] text-[16px] gap-2 font-semibold flex flex-col">
-                  <p>First Visit:</p>
-                  <p>Last Visit:</p>
-                </div>
-                <div className="text-[#1C2434] text-[16px] gap-2 font-semibold flex flex-col">
-                  <p>19 August, 2023</p>
-                  <p>19 August, 2024</p>
-                </div>
+            </div>
+            <div className="w-[1px] h-[70px] bg-slate-500"></div>
+            <div className="w-[40%] flex justify-between ">
+              <div className="text-[#1C2434B0] text-[16px] gap-2 font-semibold flex flex-col">
+                <p>Created On:</p>
+                <p>Last Active:</p>
+              </div>
+              <div className="text-[#1C2434] text-[16px] gap-2 font-semibold flex flex-col">
+                <p>19 August, 2023</p>
+                <p>19 August, 2024</p>
               </div>
             </div>
           </div>
-          <div className="w-full flex justify-between">
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
+          <div className="w-full flex justify-between px-4 py-6 gap-4">
+            <div className="w-[50%] h-[110px]  p-4 flex flex-col  justify-center gap-3 border rounded-lg">
+              <p className="text-sm text-[#64748B] font-semibold">
                 Total Merchant Visit
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">200</p>
-              <div className="flex gap-2 items-center">
-                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
-                  <img className="size-[14px]" src={arrow} />
-                  <p className="text-[10px]">18%</p>
-                </div>
-                <p className="text-[#64748B] text-[14px]">Since last week</p>
-              </div>
+              <p className="text-[#1C2434] text-2xl font-bold">200</p>
             </div>
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
-                Total Spent
+            <div className="w-[50%] h-[110px]  p-4 flex flex-col justify-center gap-3 border rounded-lg">
+              <p className="text-sm text-[#64748B] font-semibold">
+                Last Merchant Visit
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">
-                ₹10,000
+              <p className="text-[#1C2434] text-2xl font-bold">
+                19 August, 2023
               </p>
-              <div className="flex gap-2 items-center">
-                <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
-                  <img className="size-[14px]" src={arrow} />
-                  <p className="text-[10px]">18%</p>
-                </div>
-                <p className="text-[#64748B] text-[14px]">Since last week</p>
-              </div>
             </div>
           </div>
         </div>
         <div className="w-[39%] h-[293px] bg-white flex flex-col shadow-md">
-          <div className="w-full px-4 py-2 border-b border-slate-600">
-            <p className="text-[#212B36] text-[22px] font-semibold">
-              Basic Info
-            </p>
+          <div className="w-full px-4 py-4 border-b border-slate-600">
+            <p className="text-[#212B36] text-xl font-bold">Basic Data</p>
           </div>
-          <div className="w-full py-3 px-5 border-b">
+          <div className="w-full py-4 px-5 border-b">
             <div className="w-full flex justify-between font-semibold">
               <p className="text-[#1C2434B0] text-[16px]">Gender</p>
               <p className="text-[#1C2434] text-[16px]">Male</p>
             </div>
           </div>
-          <div className="w-full py-3 px-5 border-b">
+          <div className="w-full py-4 px-5 border-b">
             <div className="w-full flex justify-between font-semibold">
               <p className="text-[#1C2434B0] text-[16px]">Mobile Number</p>
               <p className="text-[#1C2434] text-[16px]">7603037718</p>
             </div>
           </div>
-          <div className="w-full py-3 px-5 border-b">
-            <div className="w-full flex justify-between font-semibold">
-              <p className="text-[#1C2434B0] text-[16px]">Email ID</p>
-              <p className="text-[#1C2434] text-[16px]">
-                souptik.das@snackbae.in
-              </p>
-            </div>
-          </div>
-          <div className="w-full py-3 px-5 border-b">
+          <div className="w-full py-4 px-5 border-b">
             <div className="w-full flex justify-between font-semibold">
               <p className="text-[#1C2434B0] text-[16px]">DOB</p>
               <p className="text-[#1C2434] text-[16px]">19-08-2002</p>
             </div>
           </div>
-          <div className="w-full py-3 px-5 border-b">
+          <div className="w-full py-4 px-5 ">
             <div className="w-full flex justify-between font-semibold">
               <p className="text-[#1C2434B0] text-[16px]">Anniversary</p>
               <p className="text-[#1C2434] text-[16px]">-</p>
@@ -686,136 +640,11 @@ const UserDetails = ({ d }) => {
         </div>
       </div>
 
-      <div className="w-full px-6">
-        <div className="w-full h-fit bg-white mb-2 flex justify-between border shadow-lg">
-          <div className="w-[25%] flex justify-center items-center p-4 gap-1">
-            <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">18.6K</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
-                Total Lifetime Spent
-              </p>
-            </div>
-          </div>
-
-          <div className="w-[25%] flex justify-center items-center p-4 gap-1">
-            <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">1500</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
-                Average Pay Size
-              </p>
-            </div>
-          </div>
-
-          <div className="w-[25%] flex justify-center items-center p-4 gap-1">
-            <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">500</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
-                Total Discount Availed
-              </p>
-            </div>
-          </div>
-
-          <div className="w-[25%] flex justify-center items-center p-4 gap-2">
-            <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">180</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
-                Total Transaction Count
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full h-fit px-6">
-        <div className="w-full flex justify-between">
-          <div className="w-[40%] flex gap-4 py-4 items-center">
-            <p className="text-[#1C2434] text-[24px] font-semibold ">
-              Transactions
-            </p>
-          </div>
-
-          <div className="w-fit flex gap-4 py-4">
-            <button
-              id="btn1"
-              onClick={btnHandle1}
-              className="bg-[#004AAD] px-3 py-1 border shadow-sm text-white"
-            >
-              Today
-            </button>
-            <button
-              id="btn2"
-              onClick={btnHandle2}
-              className="bg-white px-3 py-1 border shadow-sm text-black"
-            >
-              Weekly
-            </button>
-            <button
-              id="btn3"
-              onClick={btnHandle3}
-              className="bg-white px-3 py-1 border shadow-sm text-black"
-            >
-              Monthly
-            </button>
-            <input
-              type="date"
-              className="focus:outline-none px-3 border shadow-sm"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full my-2 px-6">
-        <div className="w-full h-fit bg-white px-1 py-4 shadow-md">
-          <div className="w-full bg-[#F7F9FC] flex gap-2 p-4">
-            <div className="w-[55%] flex justify-between">
-              <p className=" w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Merchant
-              </p>
-              <p className="w-[35%] text-center text-[#64748B] text-[12px] font-semibold">
-                Payment ID
-              </p>
-              <p className="w-[20%] text-center text-[#64748B] text-[12px] font-semibold">
-                Date
-              </p>
-              <p className="w-[20%] text-center text-[#64748B] text-[12px] font-semibold">
-                Bill Amount
-              </p>
-            </div>
-            <div className="w-[45%] flex justify-between">
-              <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Discount
-              </p>
-              <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Convenience fee
-              </p>
-              <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Final Amount
-              </p>
-              <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Payment Mode
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full h-fit ">
-            <Pagination data={data} />
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full h-fit px-6">
-        <div className="w-[40%] flex gap-4 py-4 items-center">
-          <p className="text-[#1C2434] text-[24px] font-semibold ">
-            User Activity
-          </p>
-        </div>
-      </div>
-
       <div className="w-full flex px-6 mb-4 justify-between">
         <div className="w-[49%] bg-white border shadow-lg">
           <div className="w-full px-4 py-4 flex justify-between items-center">
             <p className="text-[#212B36] text-[18px] font-semibold">Visits</p>
-            <div className="w-[60%] flex justify-between">
+            <div className="w-[60%] flex justify-between flex-wrap">
               <div className="w-[63%] h-[2rem] bg-white relative flex items-center border shadow-sm">
                 <input
                   className="w-full h-fit px-2 rounded-lg focus:outline-none"
@@ -841,20 +670,20 @@ const UserDetails = ({ d }) => {
           </div>
 
           <div className="w-full px-6 flex justify-between">
-            <p className="w-[55%] text-[#64748B] text-[12px] font-semibold">
+            <p className="w-[50%] text-[#64748B] text-[12px] font-semibold">
               Merchant Names
             </p>
-            <div className="w-[40%] flex gap-10">
-              <p className="w-[50%] text-center text-[#64748B] text-[12px] font-semibold">
-                Total Visit
+            <div className="w-[50%] flex  justify-end">
+              <p className="w-[55%] text-center text-[#64748B] text-[12px] font-semibold">
+                Merchant type
               </p>
-              <p className="w-[50%] text-center text-[#64748B] text-[12px] font-semibold">
-                Latest Visit
+              <p className="w-[45%] text-center text-[#64748B] text-[12px] font-semibold">
+                Total Visit
               </p>
             </div>
           </div>
 
-          <div className="w-full h-[650px] mt-2 overflow-hidden">
+          <div className="w-full h-fit max-h-[550px] mt-2 overflow-y-auto hideScroller">
             <div className="w-full h-full overflow-y-auto scrollbar-hide">
               {data2?.map((data, i) => (
                 <div
@@ -863,7 +692,9 @@ const UserDetails = ({ d }) => {
                 >
                   <div className="w-full">
                     <ProgressBar
-                      completed={data.totalVisit/((maxValueData2)*1.2)*100}
+                      completed={
+                        (data.totalVisit / (maxValueData2 * 1.2)) * 100
+                      }
                       borderRadius="5px"
                       bgColor="#E2E8F0"
                       baseBgColor="ffffff"
@@ -876,19 +707,19 @@ const UserDetails = ({ d }) => {
                     />
                   </div>
                   <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
-                  <div className="w-[55%] flex">
-                    <p className="text-[#1C2434] text-[14px] font-semibold">
-                      {data.merchantName}
-                    </p>
-                  </div>
-                  <div className="w-[40%] flex justify-between">
-                    <p className="w-[40%] text-center  text-[#1C2434] text-[14px] font-semibold">
-                      {data.totalVisit}
-                    </p>
-                    <p className="w-[50%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.date}
-                    </p>
-                  </div>
+                    <div className="w-[50%] flex">
+                      <p className="text-[#1C2434] text-[14px] font-semibold">
+                        {data.merchantName}
+                      </p>
+                    </div>
+                    <div className="w-[50%] flex justify-between">
+                      <p className="w-[55%] text-center  text-[#1C2434] text-[14px] font-semibold">
+                        {data.merchantType}
+                      </p>
+                      <p className="w-[45%] text-center  text-[#1C2434] text-[14px] font-semibold">
+                        {data.totalVisit}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -896,114 +727,59 @@ const UserDetails = ({ d }) => {
           </div>
         </div>
 
-        <div className="w-[49%] flex flex-col gap-4 h-[750px]">
-          <div className="bg-white flex flex-col w-full h-[385px] border shadow-lg">
+        <div className="w-[49%] flex flex-col gap-4 ">
+          <div className="bg-white flex flex-col w-full border shadow-lg">
             <div className="px-4 py-3 flex flex-col gap-2">
-              <p className="text-[#212B36] text-[22px] font-semibold">
-                Offers redemption
-              </p>
-
-              <div className="w-full flex justify-between items-center">
-                <p className="w-[55%] text-[#64748B] text-[12px] font-semibold mt-2">
-                  Offer Type
+              <div className="flex items-center justify-between">
+                <p className="text-[#212B36] text-lg font-semibold">
+                  Visit By Merchant
                 </p>
-                <div className="w-[40%] flex gap-6">
-              <p className="w-[50%] text-center text-[#64748B] text-[12px] font-semibold">
-                Redeemtion
-              </p>
-              <p className="w-[50%] text-center text-[#64748B] text-[12px] font-semibold">
-                Discount
-              </p>
-            </div>
-              </div>
-            </div>
-
-            <div className="w-full h-fit">
-              {data3?.map((data, i) => (
-                <div
-                  key={i}
-                  className="w-full flex flex-col py-2 px-4 relative"
-                >
-                  <div className="w-full">
-                    <ProgressBar
-                      completed={data.redeem/((maxValueData3)*1.2)*100}
-                      borderRadius="5px"
-                      bgColor="#E2E8F0"
-                      baseBgColor="ffffff"
-                      height="40px"
-                      labelSize="0px"
-                      // labelColor="#000000" // Change to white or any contrasting color
-                      width="100%"
-                      // labelAlignment="left"
-                      // customLabel={`${data.name}`}
-                    />
-                  </div>
-                  <div className="absolute top-4 left-4 w-[95%] flex px-4 justify-between items-center">
-                  <div className="w-[55%] flex">
-                    <p className="text-[#1C2434] text-[14px] font-semibold">
-                      {data.name}
-                    </p>
-                  </div>
-                  <div className="w-[40%] flex justify-between">
-                    <p className="w-[50%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.redeem}
-                    </p>
-                    <p className="w-[50%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.discount}
-                    </p>
-                  </div>
-                  </div>
+                <div className="w-[40%] h-[2rem] bg-white relative flex items-center border shadow-sm">
+                  <input
+                    className="w-full h-fit px-2 rounded-lg focus:outline-none"
+                    type="text"
+                    placeholder="Search"
+                  />
+                  <CiSearch className="absolute text-[1.3rem] font-semibold right-3" />
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white flex flex-col w-full h-[350px] overflow-hidden border shadow-lg">
-            <div className="px-4 py-3 flex flex-col gap-2">
-              <p className="text-[#212B36] text-[22px] font-semibold">
-                Recomendation Activity
-              </p>
+              </div>
 
               <div className="w-full flex justify-between items-center">
-                <p className="w-[40%] text-[#64748B] text-[12px] font-semibold mt-2">
+                <p className="w-[30%] text-[#64748B] text-[12px] font-semibold mt-2">
                   Merchant Name
                 </p>
-                <div className="w-[60%] flex gap-6">
-              <p className="w-[33%] text-center text-[#64748B] text-[12px] font-semibold">
-                Date
-              </p>
-              <p className="w-[33%] text-center text-[#64748B] text-[12px] font-semibold">
-                Remark
-              </p>
-              <p className="w-[33%] text-center text-[#64748B] text-[12px] font-semibold">
-                Dish
-              </p>
-            </div>
+                <p className="w-[23.33%] text-center text-[#64748B] text-[12px] font-semibold">
+                  Business Type
+                </p>
+                <p className="w-[23.33%] text-center text-[#64748B] text-[12px] font-semibold">
+                  Visited
+                </p>
+                <p className="w-[23.33%] text-center text-[#64748B] text-[12px] font-semibold">
+                  Total Visits
+                </p>
               </div>
             </div>
 
-            <div className="w-full h-full overflow-y-auto scrollbar-hide">
+            <div className="w-full h-fit max-h-[550px] overflow-y-auto hideScroller">
               {data4?.map((data, i) => (
                 <div
                   key={i}
-                  className="w-full flex justify-between py-4 px-4 border-b "
+                  className="w-full flex justify-around py-4 px-4 border-b "
                 >
-                  <div className="w-[40%] flex">
+                  <div className="w-[30%] flex">
                     <p className="text-[#1C2434] text-[14px] font-semibold">
-                      {data.merchanName}
+                      {data.merchantName}
                     </p>
                   </div>
-                  <div className="w-[60%] flex justify-between">
-                    <p className="w-[33%%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.date}
-                    </p>
-                    <p className="w-[33%%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.remark}
-                    </p>
-                    <p className="w-[33%] text-center text-[#1C2434] text-[14px] font-semibold">
-                      {data.dish}
-                    </p>
-                  </div>
+                  <p className="w-[23.33%] text-center text-[#1C2434] text-[14px] font-semibold">
+                    {data.merchantType}
+                  </p>
+                  <p className="w-[23.33%] text-center text-[#1C2434] text-[14px] font-semibold">
+                    {data.lastVisit}
+                  </p>
+                  <p className="w-[23.33%] text-center text-[#1C2434] text-[14px] font-semibold">
+                    {data.totalVisit}
+                  </p>
                 </div>
               ))}
             </div>

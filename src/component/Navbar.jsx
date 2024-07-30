@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //image
-import logo from "../assets/Logo.png";
+import logo from "../assets/IMG-20231226-WA0003 3.png";
 import pic from "../assets/picture.png";
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed bg-white z-[600] w-full h-[70px] flex justify-between items-center px-[1.5rem] border shadow-md">
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex flex-col items-center justify-center">
         {/* logo */}
         <img
           onClick={() => {
@@ -24,9 +24,9 @@ const Navbar = () => {
           }}
           src={logo}
           alt="logo"
-          className="h-[33px] w-[60px] ml-4 aspect-auto  cursor-pointer sm:block hidden "
+          className="h-[2.065rem] w-[3.75rem]  aspect-auto  cursor-pointer sm:block hidden "
         />
-        <p className="text-[#1C2434] text-[14px]">SnackBae Admin</p>
+        <p className="text-[#1C2434] text-sm">SnackBae Admin</p>
       </div>
 
       <div

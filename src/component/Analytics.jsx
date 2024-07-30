@@ -7,6 +7,8 @@ import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { VscGoToFile } from "react-icons/vsc";
 import { Chart } from "react-google-charts";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Analytics = ({ f }) => {
   const data1 = [
@@ -111,6 +113,7 @@ const Analytics = ({ f }) => {
       action: "View Details",
     },
   ];
+  const [sort, setSort] = useState(false);
 
   function btnHandle1() {
     document.getElementById("btn1").style.background = "#004AAD";
@@ -142,6 +145,7 @@ const Analytics = ({ f }) => {
   const [data, setData] = useState(data1);
   const [sortType, setSortType] = useState("");
   const [downloadType, setDownloadType] = useState("");
+  const navigate=useNavigate();
 
   const handleSortChange = (e) => {
     const sortValue = e.target.value;
@@ -274,8 +278,8 @@ const Analytics = ({ f }) => {
   };
 
   const changeComp = (id) => {
-    console.log(id);
-    f(id);
+    console.log("Sdsdsd")
+    navigate("/userdetails")
   };
 
   const options = {
@@ -300,146 +304,13 @@ const Analytics = ({ f }) => {
     // CSS-style declaration
   ];
 
-  const Pagination = ({ data }) => {
-    //data =data?.reverse();
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(6);
-    const maxPage = Math.ceil(data?.length / itemsPerPage);
-
-    function currentPageData() {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      return data?.slice(startIndex, startIndex + itemsPerPage);
-    }
-
-    function goToPage(pageNumber) {
-      setCurrentPage(pageNumber);
-    }
-
-    const renderPageNumbers = () => {
-      const pageNumbers = [];
-      let itemsToShow = 3; // Number of pages to show before and after the current page
-      let start = Math.max(currentPage - itemsToShow, 1);
-      let end = Math.min(currentPage + itemsToShow, maxPage);
-
-      if (start > 1) {
-        pageNumbers.push(1);
-        if (start > 2) {
-          pageNumbers.push("...");
-        }
-      }
-
-      for (let i = start; i <= end; i++) {
-        pageNumbers.push(i);
-      }
-
-      if (end < maxPage) {
-        if (end < maxPage - 1) {
-          pageNumbers.push("...");
-        }
-        pageNumbers.push(maxPage);
-      }
-
-      return pageNumbers.map((number, index) =>
-        number === "..." ? (
-          <span key={index} className="page-item dots">
-            {number}
-          </span>
-        ) : (
-          <button
-            key={index}
-            onClick={() => goToPage(number)}
-            className={`page-item ${currentPage === number ? "active" : ""}`}
-          >
-            {number}
-          </button>
-        )
-      );
-    };
-
-    return (
-      <div>
-        {/* Render the current page's data */}
-        {currentPageData()?.map((data, i) => (
-          <div key={i} className="w-full flex p-4 border-b ">
-            <div className="w-[55%] flex justify-between">
-              <p className="w-[25%] text-[#1C2434] text-[14px] font-semibold ml-4">
-                {data.user}
-              </p>
-              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
-                {data.userId}
-              </p>
-              <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
-                {data.contact}
-              </p>
-              <p className="w-[25%] text-center text-[#422B0D] text-[14px] font-semibold">
-                {data.spend}
-              </p>
-            </div>
-            <div className="w-[45%] flex justify-between">
-              <p className="w-[40%] text-center text-[#422B0D] text-[14px] font-semibold">
-                {data.recommend}
-              </p>
-              <p className="w-[30%] text-center text-[#422B0D] text-[14px] font-semibold pr-6">
-                {data.visit}
-              </p>
-              <div
-                onClick={() => changeComp(data.id)}
-                className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold"
-              >
-                <button>{data.action}</button>
-                <VscGoToFile className="size-[18px]" />
-              </div>
-            </div>
-          </div>
-        ))}
-        <div className="flex justify-between px-8  mt-7 sm:flex-row flex-col sm:gap-0 gap-4">
-          {/* Pagination controls */}
-          {/* Dropdown for items per page */}
-          <div className="items-per-page">
-            <label htmlFor="items-per-page">Items per page:</label>
-            <select
-              className="border-2 mx-2 rounded-md"
-              id="items-per-page"
-              value={itemsPerPage}
-              onChange={(e) => setItemsPerPage(Number(e.target.value))}
-            >
-              <option value="6">6</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
-          <div className="flex gap-5">
-            <button
-              className="page-item"
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              <GrFormPrevious />
-            </button>
-            <div className="flex gap-3">{renderPageNumbers()}</div>
-            <button
-              className="page-item"
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === maxPage}
-            >
-              <MdNavigateNext />
-            </button>
-          </div>
-
-          <div className="current-page sm:block hidden">
-            Page {currentPage} of {maxPage}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div id="analytics" className="w-full h-fit relative">
+    <div
+      id="analytics"
+      className="w-full h-fit relative sm:w-[80%] sm:ml-[20%] bg-[#F6F8FF] flex flex-col "
+    >
       <div className="w-full h-fit  mt-[70px] px-6">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between items-center">
           <div className="w-[40%] flex gap-4 py-4 items-center">
             <p className="text-[#1C2434] text-[24px] font-semibold ">
               User Analytics
@@ -450,7 +321,7 @@ const Analytics = ({ f }) => {
             </div>
           </div>
 
-          <div className="w-fit flex gap-4 py-4">
+          <div className="w-fit flex gap-4 py-4 items-center">
             <button
               id="btn1"
               onClick={btnHandle1}
@@ -484,68 +355,66 @@ const Analytics = ({ f }) => {
         <div className="w-full h-fit bg-white mb-4 flex justify-between border shadow-lg">
           <div className="w-[25%] flex justify-center items-center p-4 gap-1">
             <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">18.6K</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
+              <p className="text-[#1C2434] text-2xl font-bold">18.6K</p>
+              <p className="text-[#64748B] text-sm font-semibold">
                 Unique Visitors
               </p>
             </div>
             <div className="flex gap-1 text-[#10B981] items-center">
               <img className="size-[18px]" src={arrow} />
-              <p className="text-[14px]">18%</p>
+              <p className="text-[0.75rem]">18%</p>
             </div>
           </div>
 
           <div className="w-[25%] flex justify-center items-center p-4 gap-1">
             <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">55.9K</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
+              <p className="text-[#1C2434] text-2xl font-bold">55.9K</p>
+              <p className="text-[#64748B] text-sm font-semibold">
                 Total Pageviews
               </p>
             </div>
             <div className="flex gap-1 text-[#10B981] items-center">
               <img className="size-[18px]" src={arrow} />
-              <p className="text-[14px]">25%</p>
+              <p className="text-[0.75rem]">25%</p>
             </div>
           </div>
 
           <div className="w-[25%] flex justify-center items-center p-4 gap-1">
             <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">54%</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
+              <p className="text-[#1C2434] text-2xl font-bold">54%</p>
+              <p className="text-[#64748B] text-sm font-semibold">
                 Bounce Rate
               </p>
             </div>
             <div className="flex gap-1 text-[#10B981] items-center">
               <img className="size-[18px]" src={arrow} />
-              <p className="text-[14px]">7%</p>
+              <p className="text-[0.75rem]">7%</p>
             </div>
           </div>
 
           <div className="w-[25%] flex justify-center items-center p-4 gap-2">
             <div className="flex flex-col">
-              <p className="text-[#1C2434] text-[28px] font-semibold">2m 56s</p>
-              <p className="text-[#64748B] text-[14px] font-semibold">
+              <p className="text-[#1C2434] text-2xl font-bold">2m 56s</p>
+              <p className="text-[#64748B] text-sm font-semibold">
                 Visit Duration
               </p>
             </div>
             <div className="flex gap-1 text-[#10B981] items-center">
               <img className="size-[18px]" src={arrow} />
-              <p className="text-[14px]">12%</p>
+              <p className="text-[0.75rem]">12%</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="w-full h-fit  my-4 sm:px-6 px-4 flex justify-between ">
+      <div className="w-full h-fit  my-2 sm:px-6 px-4 flex justify-between ">
         <div className="w-[60%] flex flex-col gap-4">
           <div className="w-full flex justify-between">
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
+            <div className="w-[49%] h-[165px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-sm text-[#64748B] font-semibold">
                 Total User Database
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">
-                ₹10,00,000
-              </p>
+              <p className="text-[#1C2434] text-2xl font-bold">₹10,00,000</p>
               <div className="flex gap-2 items-center">
                 <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
                   <img className="size-[14px]" src={arrow} />
@@ -554,11 +423,11 @@ const Analytics = ({ f }) => {
                 <p className="text-[#64748B] text-[14px]">Since last week</p>
               </div>
             </div>
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
+            <div className="w-[49%] h-[165px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-sm text-[#64748B] font-semibold">
                 User with activity
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">1000</p>
+              <p className="text-[#1C2434] text-2xl font-bold">1000</p>
               <div className="flex gap-2 items-center">
                 <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
                   <img className="size-[14px]" src={arrow} />
@@ -569,13 +438,11 @@ const Analytics = ({ f }) => {
             </div>
           </div>
           <div className="w-full flex justify-between">
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
+            <div className="w-[49%] h-[165px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-sm text-[#64748B] font-semibold">
                 User with payments
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">
-                ₹10,000
-              </p>
+              <p className="text-[#1C2434] text-2xl font-bold">₹10,000</p>
               <div className="flex gap-2 items-center">
                 <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
                   <img className="size-[14px]" src={arrow} />
@@ -584,13 +451,11 @@ const Analytics = ({ f }) => {
                 <p className="text-[#64748B] text-[14px]">Since last week</p>
               </div>
             </div>
-            <div className="w-[49%] h-[150px] bg-white p-4 flex flex-col justify-between shadow-md">
-              <p className="text-[16px] text-[#64748B] font-semibold">
+            <div className="w-[49%] h-[165px] bg-white p-4 flex flex-col justify-between shadow-md">
+              <p className="text-sm text-[#64748B] font-semibold">
                 User with recommendation
               </p>
-              <p className="text-[#1C2434] text-[32px] font-semibold">
-                ₹10,000
-              </p>
+              <p className="text-[#1C2434] text-2xl font-bold">₹10,000</p>
               <div className="flex gap-2 items-center">
                 <div className="flex gap-1 text-[#1A9882] items-center bg-[#10B9814D] rounded-lg p-1">
                   <img className="size-[14px]" src={arrow} />
@@ -601,7 +466,7 @@ const Analytics = ({ f }) => {
             </div>
           </div>
         </div>
-        <div className="w-[39%] h-[316px] bg-white flex flex-col shadow-md">
+        <div className="w-[39%] h-[346px] bg-white flex flex-col shadow-md">
           <div className="w-full px-4 py-2 border-b-2 border-slate-300">
             <p className="text-[#212B36] text-[22px] font-semibold">
               User Gender Split
@@ -617,7 +482,7 @@ const Analytics = ({ f }) => {
         </div>
       </div>
 
-      <div className="w-full h-fit my-6 sm:px-6 px-4">
+      <div className="w-full h-fit my-4 sm:px-6 px-4">
         <div className="flex justify-between items-center">
           <p className="text-[#1C2434] text-[24px] font-semibold ">
             User Database
@@ -633,18 +498,36 @@ const Analytics = ({ f }) => {
               <CiSearch className="absolute text-[1.3rem] font-semibold right-5" />
             </div>
 
-            <div className="w-[20%] flex h-[2rem] bg-white border px-[12px] items-center gap-2 shadow-sm">
-              <select
-                name="sort_by"
-                value={sortType}
-                onChange={handleSortChange}
-                className="w-full h-full font-semibold outline-none"
+            <div className="relative">
+              <div
+                onClick={() => setSort(!sort)}
+                className="bg-white border rounded-lg px-4 py-2 mx-2 flex items-center gap-2 text-sm font-Roboto"
               >
-                <option value="">Sort By</option>
-                <option value="Highestamount">Payment Volume</option>
-                <option value="Paymentbydates">Payment by dates</option>
-                <option value="Highestdiscount">Highest discount</option>
-              </select>
+                <button>Sort by</button>
+                {!sort ? <IoIosArrowDown /> : <IoIosArrowUp />}
+              </div>
+              {sort && (
+                <ul className="absolute -left-10 mt-2 w-60 bg-white border rounded-lg shadow-lg py-1 z-10 text-center">
+                  <li
+                    className="cursor-pointer px-4 py-2 hover:bg-gray-100 border-b"
+                    onClick={() => handleSortChange("")}
+                  >
+                    Spent(High-Low)
+                  </li>
+                  <li
+                    className="cursor-pointer px-4 py-2 hover:bg-gray-100 border-b"
+                    onClick={() => handleSortChange("")}
+                  >
+                    Visit(High-Low)
+                  </li>
+                  <li
+                    className="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                    onClick={() => handleSortChange("")}
+                  >
+                    Highest recommendation
+                  </li>
+                </ul>
+              )}
             </div>
 
             <div className="w-[30%] flex h-[2rem] bg-white border px-[12px] items-center gap-0 shadow-sm">
@@ -664,10 +547,10 @@ const Analytics = ({ f }) => {
         </div>
       </div>
 
-      <div className="w-full my-6 sm:px-6 px-4">
-        <div className="w-full h-fit bg-white px-2 py-4 shadow-md">
+      <div className="w-full my-4 sm:px-6 px-4  -mt-2">
+        <div className="w-full  bg-white px-2 py-4 shadow-md ">
           <div className="w-full bg-[#F7F9FC] flex p-4">
-            <div className="w-[55%] flex justify-between">
+            <div className="w-[50%] flex justify-between">
               <p className="w-[25%] text-[#64748B] text-[12px] font-semibold ml-4">
                 User Name
               </p>
@@ -677,11 +560,8 @@ const Analytics = ({ f }) => {
               <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
                 Mobile Number
               </p>
-              <p className="w-[25%] text-center text-[#64748B] text-[12px] font-semibold">
-                Total Spend
-              </p>
             </div>
-            <div className="w-[45%] flex justify-between">
+            <div className="w-[50%] flex justify-between">
               <p className="w-[40%] text-center text-[#64748B] text-[12px] font-semibold">
                 Dish Recommendation
               </p>
@@ -694,8 +574,38 @@ const Analytics = ({ f }) => {
             </div>
           </div>
 
-          <div className="w-full h-fit ">
-            <Pagination data={data} />
+          <div className="w-full h-[22.5rem] overflow-y-auto hideScroller -mt-2">
+            {/* Render the current page's data */}
+            {data1?.map((data, i) => (
+              <div key={i} className="w-full flex p-4 border-b ">
+                <div className="w-[50%] flex justify-between">
+                  <p className="w-[25%] text-[#1C2434] text-[14px] font-semibold ml-4">
+                    {data.user}
+                  </p>
+                  <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
+                    {data.userId}
+                  </p>
+                  <p className="w-[25%] text-center text-[#1C2434] text-[14px]">
+                    {data.contact}
+                  </p>
+                </div>
+                <div className="w-[50%] flex justify-between">
+                  <p className="w-[40%] text-center text-[#422B0D] text-[14px] font-semibold">
+                    {data.recommend}
+                  </p>
+                  <p className="w-[30%] text-center text-[#422B0D] text-[14px] font-semibold pr-6">
+                    {data.visit}
+                  </p>
+                  <div
+                    onClick={() => changeComp(data.id)}
+                    className="w-[30%] flex items-center gap-1 text-[#3C50E0] text-[14px] font-semibold"
+                  >
+                    <button>{data.action}</button>
+                    <VscGoToFile className="size-[18px]" />
+                  </div>
+                </div>
+              </div>
+            ))}{" "}
           </div>
         </div>
       </div>
