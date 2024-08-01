@@ -22,35 +22,42 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import picture from "../assets/picture.png";
 
 const Dashboard = () => {
+  // const data = Array.from({ length: 30 }, (_, i) => ({
+  //   name: `${i + 1}`,
+  //   value: Math.floor(Math.random() * 20000), // Generates a random value between 0 and 20000
+  // }));
+
   const data = [
-    {
-      name: "1",
-      value: 10000,
-    },
-    {
-      name: "2",
-      value: 12000,
-    },
-    {
-      name: "3",
-      value: 5000,
-    },
-    {
-      name: "4",
-      value: 9000,
-    },
-    {
-      name: "5",
-      value: 2000,
-    },
-    {
-      name: "6",
-      value: 15570,
-    },
-    {
-      name: "7",
-      value: 1000,
-    },
+    { name: "1", value: 10000 },
+    { name: "2", value: 12000 },
+    { name: "3", value: 5000 },
+    { name: "4", value: 9000 },
+    { name: "5", value: 2000 },
+    { name: "6", value: 15570 },
+    { name: "7", value: 1000 },
+    { name: "8", value: 8000 },
+    { name: "9", value: 6000 },
+    { name: "10", value: 7000 },
+    { name: "11", value: 3000 },
+    { name: "12", value: 14000 },
+    { name: "13", value: 16000 },
+    { name: "14", value: 11000 },
+    { name: "15", value: 500 },
+    { name: "16", value: 12000 },
+    { name: "17", value: 7000 },
+    { name: "18", value: 9000 },
+    { name: "19", value: 13000 },
+    { name: "20", value: 10000 },
+    { name: "21", value: 8000 },
+    { name: "22", value: 4000 },
+    { name: "23", value: 6000 },
+    { name: "24", value: 2000 },
+    { name: "25", value: 10000 },
+    { name: "26", value: 11000 },
+    { name: "27", value: 15000 },
+    { name: "28", value: 9000 },
+    { name: "29", value: 13000 },
+    { name: "30", value: 5000 },
   ];
 
   const data1 = [
@@ -404,7 +411,10 @@ const Dashboard = () => {
   // };
 
   return (
-    <div id="dashboard" className="w-full h-fit pt-[70px]  sm:w-[80%] sm:ml-[20%] bg-[#F6F8FF] flex flex-col ">
+    <div
+      id="dashboard"
+      className="w-full h-fit pt-[70px]  sm:w-[80%] sm:ml-[20%] bg-[#F6F8FF] flex flex-col "
+    >
       {/* add admin */}
       {isOpen && (
         <div
@@ -630,12 +640,12 @@ const Dashboard = () => {
                 left: 20,
                 bottom: 5,
               }}
-              barSize={20}
+              barSize={15}
             >
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="value" fill="#3C50E0" />
+              <CartesianGrid strokeDasharray="3 3"  vertical={false}/>
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis axisLine={false} tickLine={false} />
+              <Bar dataKey="value" fill="#3C50E0" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -679,7 +689,7 @@ const Dashboard = () => {
           </div>
 
           <div className="w-full h-[17rem] overflow-y-auto hideScroller -mt-2">
-          {data5?.map((data, i) => (
+            {data5?.map((data, i) => (
               <div key={i} className="w-full flex py-3 px-4 border-b ">
                 <div className="w-full flex justify-between items-center">
                   <div className="w-[25%] flex items-center">

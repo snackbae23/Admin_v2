@@ -17,34 +17,36 @@ import { useNavigate } from "react-router-dom";
 
 const Sales = ({ g }) => {
   const data = [
-    {
-      name: "1",
-      value: 10000,
-    },
-    {
-      name: "2",
-      value: 12000,
-    },
-    {
-      name: "3",
-      value: 5000,
-    },
-    {
-      name: "4",
-      value: 9000,
-    },
-    {
-      name: "5",
-      value: 2000,
-    },
-    {
-      name: "6",
-      value: 15570,
-    },
-    {
-      name: "7",
-      value: 1000,
-    },
+    { name: "1", value: 10000 },
+    { name: "2", value: 12000 },
+    { name: "3", value: 5000 },
+    { name: "4", value: 9000 },
+    { name: "5", value: 2000 },
+    { name: "6", value: 15570 },
+    { name: "7", value: 1000 },
+    { name: "8", value: 8000 },
+    { name: "9", value: 6000 },
+    { name: "10", value: 7000 },
+    { name: "11", value: 3000 },
+    { name: "12", value: 14000 },
+    { name: "13", value: 16000 },
+    { name: "14", value: 11000 },
+    { name: "15", value: 500 },
+    { name: "16", value: 12000 },
+    { name: "17", value: 7000 },
+    { name: "18", value: 9000 },
+    { name: "19", value: 13000 },
+    { name: "20", value: 10000 },
+    { name: "21", value: 8000 },
+    { name: "22", value: 4000 },
+    { name: "23", value: 6000 },
+    { name: "24", value: 2000 },
+    { name: "25", value: 10000 },
+    { name: "26", value: 11000 },
+    { name: "27", value: 15000 },
+    { name: "28", value: 9000 },
+    { name: "29", value: 13000 },
+    { name: "30", value: 5000 },
   ];
 
   const [am, setam] = useState(true);
@@ -170,14 +172,12 @@ const Sales = ({ g }) => {
                 left: 20,
                 bottom: 5,
               }}
-              barSize={20}
+              barSize={15}
             >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill="#3C50E0" />
+              <CartesianGrid strokeDasharray="3 3"  vertical={false}/>
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis axisLine={false} tickLine={false} />
+              <Bar dataKey="value" fill="#3C50E0" radius={[3,3,0,0]}/>
             </BarChart>
           </ResponsiveContainer>
         </div>
